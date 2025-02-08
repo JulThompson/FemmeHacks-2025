@@ -14,6 +14,8 @@ class GameScene extends Phaser.Scene
         this.load.image('inventory', 'assets/images/inventory-board.webp');
         this.load.image('unfinished_icon', 'assets/images/unfinished-button.png');
         this.load.image('done_icon', 'assets/images/done-button.png');
+        this.load.image('expand_icon', 'assets/images/expand-button.png');
+        this.load.image('collapse_icon', 'assets/images/collapse-button.png');
 
         this.load.image('food', 'assets/images/apple.png');
         this.load.image('toy', 'assets/images/toy.png');
@@ -164,7 +166,12 @@ class GameScene extends Phaser.Scene
             color: 'black',
         })
        
-        let eatingHeader = this.add.text(700, 90, "\u{1F783} Sustainable Eating: Food", {
+        let eatingCategoryButton = this.add.image(700, 103, 'collapse_icon');
+            eatingCategoryButton.setInteractive();
+            eatingCategoryButton.on('pointerdown', () => {
+                displayEatingTasks();
+            });
+        let eatingHeader = this.add.text(720, 90, "Sustainable Eating: Food", {
             fontFamily: 'Stardew_Valley',
             fontSize: '25px',
             color: 'black'
@@ -172,7 +179,12 @@ class GameScene extends Phaser.Scene
         .setInteractive({ useHandCursor: true })
         .on('pointerdown', displayEatingTasks);
         
-        let reduceHeader = this.add.text(700, 400, "\u{1F783} Reduce Waste: Toys", {
+        let reduceCategoryButton = this.add.image(700, 413, 'expand_icon');
+            reduceCategoryButton.setInteractive();
+            reduceCategoryButton.on('pointerdown', () => {
+                displayReduceTasks();
+            });
+        let reduceHeader = this.add.text(720, 400, "Reduce Waste: Toys", {
             fontFamily: 'Stardew_Valley',
             fontSize: '25px',
             color: 'black'
@@ -180,7 +192,12 @@ class GameScene extends Phaser.Scene
         .setInteractive({ useHandCursor: true })
         .on('pointerdown', displayReduceTasks);
 
-        let recycleHeader = this.add.text(700, 440, "\u{1F783} Recycling Tasks", {
+        let recycleCategoryButton = this.add.image(700, 453, 'expand_icon');
+            recycleCategoryButton.setInteractive();
+            recycleCategoryButton.on('pointerdown', () => {
+                displayCustomTasks();
+            });
+        let recycleHeader = this.add.text(720, 440, "Recycling Tasks", {
             fontFamily: 'Stardew_Valley',
             fontSize: '25px',
             color: 'black'
@@ -195,14 +212,22 @@ class GameScene extends Phaser.Scene
                     eatingElements[i].visible = false;
                     eatingButtons[i].setInteractive(false);
                     eatingButtons[i].visible = false;
+                    eatingCategoryButton.setTexture('expand_icon');
+                    reduceCategoryButton.y = 145
                     reduceHeader.y = 130;
+                    recycleCategoryButton.y = 185;
                     recycleHeader.y = 170;
                 } else {
                     eatingElements[i].visible = true;
                     eatingButtons[i].setInteractive(true);
                     eatingButtons[i].visible = true;
+                    eatingCategoryButton.setTexture('collapse_icon');
+                    reduceCategoryButton.y = 415;
                     reduceHeader.y = 400;
+                    recycleCategoryButton.y = 455;
                     recycleHeader.y = 440;
+                    reduceCategoryButton.setTexture('expand_icon');
+                    recycleCategoryButton.setTexture('expand_icon');
                 }
             }
             for (let i = 0; i < reduceElements.length; i++) {
@@ -223,13 +248,20 @@ class GameScene extends Phaser.Scene
                     reduceElements[i].visible = false;
                     reduceButtons[i].setInteractive(false);
                     reduceButtons[i].visible = false;
+                    reduceCategoryButton.setTexture('expand_icon');
+                    recycleCategoryButton.y = 185;
                     recycleHeader.y = 170;
                 } else {
                     reduceElements[i].visible = true;
                     reduceButtons[i].setInteractive(true);
                     reduceButtons[i].visible = true;
+                    reduceCategoryButton.setTexture('collapse_icon');
+                    recycleCategoryButton.y = 375;
                     recycleHeader.y = 360;
+                    reduceCategoryButton.y = 145
                     reduceHeader.y = 130;
+                    eatingCategoryButton.setTexture('expand_icon');
+                    recycleCategoryButton.setTexture('expand_icon');
                 }
             }
             for (let i = 0; i < eatingElements.length; i++) {
@@ -250,12 +282,18 @@ class GameScene extends Phaser.Scene
                     recycleElements[i].visible = false;
                     recycleButtons[i].setInteractive(false);
                     recycleButtons[i].visible = false;
+                    recycleCategoryButton.setTexture('expand_icon');
                 } else {
                     recycleElements[i].visible = true;
                     recycleButtons[i].setInteractive(true);
                     recycleButtons[i].visible = true;
+                    recycleCategoryButton.setTexture('collapse_icon');
+                    reduceCategoryButton.y = 145;
                     reduceHeader.y = 130;
+                    recycleCategoryButton.y = 185;
                     recycleHeader.y = 170;
+                    eatingCategoryButton.setTexture('expand_icon');
+                    reduceCategoryButton.setTexture('expand_icon');
                 }
             }
             for (let i = 0; i < eatingElements.length; i++) {
