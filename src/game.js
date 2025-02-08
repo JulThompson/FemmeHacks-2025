@@ -24,7 +24,7 @@ class GameScene extends Phaser.Scene
         this.load.image('toy_bar', 'assets/images/toy-bar.png');
         this.load.image('energy_bar', 'assets/images/energy-bar.png');
 
-        this.load.spritesheet('raccoon_1_idle', 'assets/sprites/raccoon.png', { frameWidth: 32, frameHeight: 33 });
+        // this.load.spritesheet('raccoon_1_idle', 'assets/sprites/raccoon.png', { frameWidth: 32, frameHeight: 33 });
     }
 
     create () {
@@ -326,7 +326,7 @@ class GameScene extends Phaser.Scene
         //     repeat: -1
         // });
 
-        this.raccoon_1 = this.add.sprite(310, 290, 'raccoon_1_idle').setScale(3);
+        // this.raccoon_1 = this.add.sprite(310, 290, 'raccoon_1_idle').setScale(3);
     }
 
     update () {
