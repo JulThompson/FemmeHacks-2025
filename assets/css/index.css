@@ -1,0 +1,22 @@
+@font-face {
+    font-family: myFont;
+    src: url(Stardew_Valley.ttf);
+ }
+  
+ h1 {
+    font-family: myFont;
+    text-align: center;
+    font-size: 15vh;
+    color: darkgreen;
+ }
+
+ button {
+    font-family: myFont;
+    font-size: 2em;
+    padding-bottom: 10px;
+    margin: auto auto 3vh;
+    display: block;
+    justify-content: center;
+    height: 5vh;
+    width: 20vw;
+ }
