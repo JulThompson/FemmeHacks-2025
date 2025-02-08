@@ -1,11 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Trash Panda Game</title>
 </head>
+
 <body>
-    <script defer type = 'module' src = "src/main.js"></script>
+    <div style="font-family: Press-Start-2P; position: absolute; left:-1000px; visibility:hidden;">.</div>
+    <input type="text" id="nameInput" placeholder="Enter your name..."
+        style="font-family: Press-Start-2P; font-size: 22px;">
+    <script src="https://cdn.jsdelivr.net/npm/phaser@3.60.0/dist/phaser-arcade-physics.min.js"></script>
+    <script src="src/phaser.js"></script>
+    <script defer type='module' src="src/main.js"></script>
 </body>
+
 </html>
