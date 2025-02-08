@@ -421,7 +421,14 @@ class GameScene extends Phaser.Scene
     }
 
     update () {
-        this.raccoon_1.anims.play('raccoon_1_idle_happy', true);
+        if (this.hunger_level <= 0 || this.happy_level <= 0 || this.energy_level <= 0) {
+            this.raccoon_1.anims.play('raccoon_1_idle_happy', false);
+            this.raccoon_1.anims.play('raccoon_1_panic', true);
+            this.happy_level = 50;
+        } else if (Math.random() < 0.01) {
+            this.raccoon_1.anims.play('raccoon_1_panic', false);
+            this.raccoon_1.anims.play('raccoon_1_idle_happy', true);
+        }
     }
 }
 
