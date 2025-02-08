@@ -360,7 +360,12 @@ class GameScene extends Phaser.Scene
         this.time.addEvent({
             delay: 6000,
             callback: function () {
-                this.food_bar_width *= 0.95;
+                if ((this.food_bar_width *= 0.95) <= 0.1) {
+                    this.food_bar_width = 0;
+                }
+                else {
+                    this.food_bar_width *= 0.95
+                }
                 if (this.food_bar_width > 0) {
                     this.food_bar.setCrop(0, 0, this.food_bar_width, 5);
                 }
@@ -376,6 +381,12 @@ class GameScene extends Phaser.Scene
         this.time.addEvent({
             delay: 2000,
             callback: function () {
+                if ((this.toy_bar_width *= 0.95) <= 0.1) {
+                    this.toy_bar_width = 0;
+                }
+                else {
+                    this.toy_bar_width *= 0.95
+                }
                 this.toy_bar_width *= 0.95;
                 if (this.toy_bar_width > 0) {
                     this.toy_bar.setCrop(0, 0, this.toy_bar_width, 5);
@@ -392,7 +403,12 @@ class GameScene extends Phaser.Scene
         this.time.addEvent({
             delay: 4000,
             callback: function () {
-                this.energy_bar_width *= 0.95;
+                if ((this.energy_bar_width *= 0.95) <= 0.1) {
+                    this.energy_bar_width = 0;
+                }
+                else {
+                    this.energy_bar_width *= 0.95;
+                }
                 if (this.energy_bar_width > 0) {
                     this.energy_bar.setCrop(0, 0, this.energy_bar_width, 5);
                 }
@@ -519,11 +535,9 @@ class GameScene extends Phaser.Scene
     }
 
     update () {
-        if (this.hunger_level <= 0 || this.happy_level <= 0 || this.energy_level <= 0) {
-            this.raccoon_1.anims.play('raccoon_1_idle_happy', false);
+        if (this.food_bar_width <= 0.1 || this.toy_bar_width <= 0.1 || this.energy_bar_width <= 0.1) {
             this.raccoon_1.anims.play('raccoon_1_panic', true);
         } else if (Math.random() < 0.01) {
-            this.raccoon_1.anims.play('raccoon_1_panic', false);
             this.raccoon_1.anims.play('raccoon_1_idle_happy', true);
         }
     }
