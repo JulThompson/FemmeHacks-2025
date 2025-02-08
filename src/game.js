@@ -12,6 +12,8 @@ class GameScene extends Phaser.Scene
         this.load.image('home_board', 'assets/images/home-board.png');
         this.load.image('button', 'assets/images/button.png');
         this.load.image('inventory', 'assets/images/inventory-board.webp');
+        this.load.image('unfinished_icon', 'assets/images/unfinished-button.png');
+        this.load.image('done_icon', 'assets/images/done-button.png');
 
         this.load.image('food', 'assets/images/apple.png');
         this.load.image('toy', 'assets/images/toy.png');
@@ -47,6 +49,7 @@ class GameScene extends Phaser.Scene
         ];
         let eatingPoints = [3, 3, 5, 3, 5, 3, 1, 1, 1, 1, 3, 5];
         let eatingElements = [];
+        let eatingButtons = [];
         for (let i = 0; i < eatingArray.length; i++) {
             let element = this.add.text(725, 120 + (22*i), eatingArray[i], {
                 fontFamily: 'Stardew_Valley',
@@ -55,6 +58,19 @@ class GameScene extends Phaser.Scene
             });
             element.visible = false;
             eatingElements.push(element);
+
+            let corresponding_button = this.add.image(700, 130 + (22*i), 'unfinished_icon').setScale(0.7);
+            corresponding_button.visible = false;
+            corresponding_button.setInteractive();
+            corresponding_button.on('pointerdown', () => {
+                corresponding_button.setTexture('done_icon');
+                this.time.delayedCall(1000, () => {
+                    corresponding_button.setTexture('unfinished_icon');
+                }, [], this);
+            });
+            corresponding_button.on('pointerover', () => vol.setTint(0xcccccc));
+            corresponding_button.on('pointerout', () => vol.setTint(0xffffff));
+            eatingButtons.push(corresponding_button);
         }
 
         let reduceArray = [
@@ -69,6 +85,7 @@ class GameScene extends Phaser.Scene
         ];
         let reducePoints = [1, 1, 1, 3, 1, 3, 5, 3];
         let reduceElements = [];
+        let reduceButtons = [];
         for (let i = 0; i < reduceArray.length; i++) {
             let element = this.add.text(725, 170 + (22*i), reduceArray[i], {
                 fontFamily: 'Stardew_Valley',
@@ -77,11 +94,25 @@ class GameScene extends Phaser.Scene
             });
             element.visible = false;
             reduceElements.push(element);
+
+            let corresponding_button = this.add.image(700, 180 + (22*i), 'unfinished_icon').setScale(0.7);
+            corresponding_button.visible = false;
+            corresponding_button.setInteractive();
+            corresponding_button.on('pointerdown', () => {
+                corresponding_button.setTexture('done_icon');
+                this.time.delayedCall(1000, () => {
+                    corresponding_button.setTexture('unfinished_icon');
+                }, [], this);
+            });
+            corresponding_button.on('pointerover', () => vol.setTint(0xcccccc));
+            corresponding_button.on('pointerout', () => vol.setTint(0xffffff));
+            reduceButtons.push(corresponding_button);
         }
 
         let customArray = ["test", "test2", "test3"];
         let customPoints = [];
         let customElements = [];
+        let customButtons = [];
         for (let i = 0; i < customArray.length; i++) {
             let element = this.add.text(725, 210 + (22*i), customArray[i], {
                 fontFamily: 'Stardew_Valley',
@@ -90,6 +121,19 @@ class GameScene extends Phaser.Scene
             });
             element.visible = false;
             customElements.push(element);
+
+            let corresponding_button = this.add.image(700, 220 + (22*i), 'unfinished_icon').setScale(0.7);
+            corresponding_button.visible = false;
+            corresponding_button.setInteractive();
+            corresponding_button.on('pointerdown', () => {
+                corresponding_button.setTexture('done_icon');
+                this.time.delayedCall(1000, () => {
+                    corresponding_button.setTexture('unfinished_icon');
+                }, [], this);
+            });
+            corresponding_button.on('pointerover', () => vol.setTint(0xcccccc));
+            corresponding_button.on('pointerout', () => vol.setTint(0xffffff));
+            customButtons.push(corresponding_button);
         }
 
         let hungerLevel = 50;
