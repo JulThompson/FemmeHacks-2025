@@ -83,6 +83,9 @@ class GameScene extends Phaser.Scene
                     this.raccoon_1.anims.play('raccoon_1_dance', false);
                 }
                 foods += eatingPoints[i];
+                if (foods > 0) {
+                    this.food_button.setTint(0xffffff);
+                }
                 this.food_text.setText(foods + 'x');
                 this.time.delayedCall(1000, () => {
                     corresponding_button.setTexture('unfinished_icon');
@@ -124,6 +127,9 @@ class GameScene extends Phaser.Scene
                     this.raccoon_1.anims.play('raccoon_1_dance', false);
                 }
                 toys += reducePoints[i];
+                if (toys > 0) {
+                    this.toy_button.setTint(0xffffff);
+                }
                 this.toy_text.setText(toys + 'x');
                 this.time.delayedCall(1000, () => {
                     corresponding_button.setTexture('unfinished_icon');
@@ -168,6 +174,9 @@ class GameScene extends Phaser.Scene
                     this.raccoon_1.anims.play('raccoon_1_dance', false);
                 }
                 energy += recyclePoints[i];
+                if (energy > 0) {
+                    this.energy_button.setTint(0xffffff);
+                }
                 this.energy_text.setText(energy + 'x');
                 this.time.delayedCall(1000, () => {
                     corresponding_button.setTexture('unfinished_icon');
