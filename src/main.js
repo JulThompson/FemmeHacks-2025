@@ -1,10 +1,10 @@
-import StartScene from './start.js'
+// import StartScene from './start.js'
 import GameScene from './game.js'
 import EndingScene from './ending.js'
 
 const config = {
     type: Phaser.AUTO,
-    width: 100,
+    width: 1300,
     height: 660,
     backgroundColor: '#000000',
     pixelArt: true,
