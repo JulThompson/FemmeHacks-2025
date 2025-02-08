@@ -43,8 +43,9 @@ class GameScene extends Phaser.Scene
         let eatingPoints = [3, 3, 5, 3, 5, 3, 1, 1, 1, 1, 3, 5];
         let eatingElements = [];
         for (let i = 0; i < eatingArray.length; i++) {
-            let element = this.add.text(725, 110 + (22*i), eatingArray[i], {
+            let element = this.add.text(725, 120 + (22*i), eatingArray[i], {
                 fontFamily: 'Stardew_Valley',
+                fontSize: '20px',
                 color: 'black'
             });
             element.visible = false;
@@ -64,8 +65,9 @@ class GameScene extends Phaser.Scene
         let reducePoints = [1, 1, 1, 3, 1, 3, 5, 3];
         let reduceElements = [];
         for (let i = 0; i < reduceArray.length; i++) {
-            let element = this.add.text(725, 150 + (22*i), reduceArray[i], {
+            let element = this.add.text(725, 170 + (22*i), reduceArray[i], {
                 fontFamily: 'Stardew_Valley',
+                fontSize: '20px',
                 color: 'black'
             });
             element.visible = false;
@@ -76,8 +78,9 @@ class GameScene extends Phaser.Scene
         let customPoints = [];
         let customElements = [];
         for (let i = 0; i < customArray.length; i++) {
-            let element = this.add.text(725, 200 + (22*i), customArray[i], {
+            let element = this.add.text(725, 210 + (22*i), customArray[i], {
                 fontFamily: 'Stardew_Valley',
+                fontSize: '20px',
                 color: 'black'
             });
             element.visible = false;
@@ -94,29 +97,29 @@ class GameScene extends Phaser.Scene
 
         this.add.text(925, 50, "Tasks", {
             fontFamily: 'Stardew_Valley',
-            fontSize: '25px',
+            fontSize: '35px',
             color: 'black',
         })
        
-        let eatingHeader = this.add.text(700, 80, "Sustainable Eating: Food", {
+        let eatingHeader = this.add.text(700, 90, "⏷Sustainable Eating: Food", {
             fontFamily: 'Stardew_Valley',
-            fontSize: '20px',
+            fontSize: '25px',
             color: 'black'
         })
         .setInteractive({ useHandCursor: true })
         .on('pointerdown', displayEatingTasks);
         
-        let reduceHeader = this.add.text(700, 120, "Reduce Waste: Toys", {
+        let reduceHeader = this.add.text(700, 130, "⏷Reduce Waste: Toys", {
             fontFamily: 'Stardew_Valley',
-            fontSize: '20px',
+            fontSize: '25px',
             color: 'black'
         })
         .setInteractive({ useHandCursor: true })
         .on('pointerdown', displayReduceTasks);
 
-        let customHeader = this.add.text(700, 160, "Custom Tasks", {
+        let customHeader = this.add.text(700, 170, "⏷Custom Tasks", {
             fontFamily: 'Stardew_Valley',
-            fontSize: '20px',
+            fontSize: '25px',
             color: 'black'
         })
         .setInteractive({ useHandCursor: true })
@@ -127,12 +130,12 @@ class GameScene extends Phaser.Scene
             for (let i = 0; i < eatingElements.length; i++) {
                 if (eatingElements[i].visible) {
                     eatingElements[i].visible = false;
-                    reduceHeader.y = 120;
-                    customHeader.y = 160;
+                    reduceHeader.y = 130;
+                    customHeader.y = 170;
                 } else {
                     eatingElements[i].visible = true;
-                    reduceHeader.y = 380;
-                    customHeader.y = 420;
+                    reduceHeader.y = 400;
+                    customHeader.y = 440;
                 }
             }
             for (let i = 0; i < reduceElements.length; i++) {
@@ -147,11 +150,11 @@ class GameScene extends Phaser.Scene
             for (let i = 0; i < reduceElements.length; i++) {
                 if (reduceElements[i].visible) {
                     reduceElements[i].visible = false;
-                    customHeader.y = 160;
+                    customHeader.y = 170;
                 } else {
                     reduceElements[i].visible = true;
-                    customHeader.y = 340;
-                    reduceHeader.y = 120;
+                    customHeader.y = 360;
+                    reduceHeader.y = 130;
                 }
             }
             for (let i = 0; i < eatingElements.length; i++) {
@@ -168,8 +171,8 @@ class GameScene extends Phaser.Scene
                     customElements[i].visible = false;
                 } else {
                     customElements[i].visible = true;
-                    reduceHeader.y = 120;
-                    customHeader.y = 160;
+                    reduceHeader.y = 130;
+                    customHeader.y = 170;
                 }
             }
             for (let i = 0; i < eatingElements.length; i++) {
