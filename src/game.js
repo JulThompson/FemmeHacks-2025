@@ -81,12 +81,6 @@ class GameScene extends Phaser.Scene
                 }
                 foods += eatingPoints[i];
                 this.food_text.setText(foods + 'x');
-                addToy(reducePoints[i]);
-                if (reducePoints[i] >= 5) {
-                    this.raccoon_1.anims.play('raccoon_1_dance', false);
-                }
-                toys += reducePoints[i];
-                this.toy_text.setText(toys + 'x');
                 this.time.delayedCall(1000, () => {
                     corresponding_button.setTexture('unfinished_icon');
                 }, [], this);
@@ -126,8 +120,8 @@ class GameScene extends Phaser.Scene
                 if (recyclePoints[i] >= 5) {
                     this.raccoon_1.anims.play('raccoon_1_dance', false);
                 }
-                energy += recyclePoints[i];
-                this.energy_text.setText(energy + 'x');
+                toys += reducePoints[i];
+                this.toy_text.setText(toys + 'x');
                 this.time.delayedCall(1000, () => {
                     corresponding_button.setTexture('unfinished_icon');
                 }, [], this);
@@ -167,6 +161,11 @@ class GameScene extends Phaser.Scene
             corresponding_button.setInteractive();
             corresponding_button.on('pointerdown', () => {
                 corresponding_button.setTexture('done_icon');
+                if (recyclePoints[i] >= 5) {
+                    this.raccoon_1.anims.play('raccoon_1_dance', false);
+                }
+                energy += recyclePoints[i];
+                this.energy_text.setText(energy + 'x');
                 this.time.delayedCall(1000, () => {
                     corresponding_button.setTexture('unfinished_icon');
                 }, [], this);
