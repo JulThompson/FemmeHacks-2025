@@ -34,18 +34,18 @@ class GameScene extends Phaser.Scene
         this.add.image(320, 230, 'raccoon_background').setScale(0.85);
         
         let eatingArray = [
-            "Make a vegan meal for lunch or dinner.",
-            "Make a meal with seasonal food items",
-            "Maintain a compost bin to collect food waste for one week.",
-            "Buy food from a local farmer’s market",
-            "Plant fruits or vegetables in an at-home garden",
-            "Make a meal plan for the week.",
-            "Research companies that sell whole, sustainable food.",
-            "Read a blog about sustainable food.",
-            "Try a new meat alternative.",
-            "Freeze extra food for a later meal.",
-            "Make a meal with leftovers.",
-            "Compile a list of plant-based and sustainable recipes."
+            "(3) Make a vegan meal for lunch or dinner.",
+            "(3) Make a meal with seasonal food items",
+            "(5) Maintain a compost bin to collect food waste for one week.",
+            "(3) Buy food from a local farmer’s market",
+            "(5) Plant fruits or vegetables in an at-home garden",
+            "(3) Make a meal plan for the week.",
+            "(1) Research companies that sell whole, sustainable food.",
+            "(1) Read a blog about sustainable food.",
+            "(1) Try a new meat alternative.",
+            "(1) Freeze extra food for a later meal.",
+            "(3) Make a meal with leftovers.",
+            "(5) Compile a list of plant-based and sustainable recipes."
         ];
         let eatingPoints = [3, 3, 5, 3, 5, 3, 1, 1, 1, 1, 3, 5];
         let eatingElements = [];
@@ -54,9 +54,8 @@ class GameScene extends Phaser.Scene
             let element = this.add.text(725, 120 + (22*i), eatingArray[i], {
                 fontFamily: 'Stardew_Valley',
                 fontSize: '20px',
-                color: 'black'
+                color: 'green'
             });
-            element.visible = false;
             eatingElements.push(element);
 
             let corresponding_button = this.add.image(700, 130 + (22*i), 'unfinished_icon').setScale(0.7);
@@ -74,14 +73,14 @@ class GameScene extends Phaser.Scene
         }
 
         let reduceArray = [
-            "Use a reusable water bottle.",
-            "Bring a reusable cup the next time you go to a café or coffee shop.",
-            "Use reusable bags on your trip to the grocery store.",
-            "Ride a bike to your destination.",
-            "Carpool with your friends.",
-            "Shop at a second-hand store.",
-            "Buy a new energy efficient appliance.",
-            "Donate old clothing."
+            "(1) Use a reusable water bottle.",
+            "(1) Bring a reusable cup the next time you go to a café or coffee shop.",
+            "(1) Use reusable bags on your trip to the grocery store.",
+            "(3) Ride a bike to your destination.",
+            "(1) Carpool with your friends.",
+            "(3) Shop at a second-hand store.",
+            "(5) Buy a new energy efficient appliance.",
+            "(3) Donate old clothing."
         ];
         let reducePoints = [1, 1, 1, 3, 1, 3, 5, 3];
         let reduceElements = [];
@@ -90,7 +89,7 @@ class GameScene extends Phaser.Scene
             let element = this.add.text(725, 170 + (22*i), reduceArray[i], {
                 fontFamily: 'Stardew_Valley',
                 fontSize: '20px',
-                color: 'black'
+                color: 'red'
             });
             element.visible = false;
             reduceElements.push(element);
@@ -117,7 +116,7 @@ class GameScene extends Phaser.Scene
             let element = this.add.text(725, 210 + (22*i), customArray[i], {
                 fontFamily: 'Stardew_Valley',
                 fontSize: '20px',
-                color: 'black'
+                color: 'orange'
             });
             element.visible = false;
             customElements.push(element);
@@ -158,7 +157,7 @@ class GameScene extends Phaser.Scene
         .setInteractive({ useHandCursor: true })
         .on('pointerdown', displayEatingTasks);
         
-        let reduceHeader = this.add.text(700, 130, "\u{1F783} Reduce Waste: Toys", {
+        let reduceHeader = this.add.text(700, 400, "\u{1F783} Reduce Waste: Toys", {
             fontFamily: 'Stardew_Valley',
             fontSize: '25px',
             color: 'black'
@@ -166,7 +165,7 @@ class GameScene extends Phaser.Scene
         .setInteractive({ useHandCursor: true })
         .on('pointerdown', displayReduceTasks);
 
-        let customHeader = this.add.text(700, 170, "\u{1F783} Custom Tasks", {
+        let customHeader = this.add.text(700, 440, "\u{1F783} Custom Tasks", {
             fontFamily: 'Stardew_Valley',
             fontSize: '25px',
             color: 'black'
