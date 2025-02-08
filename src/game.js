@@ -60,15 +60,54 @@ class GameScene extends Phaser.Scene
         let customArray = [];
         let customPoints = [];
 
-
         let hungerLevel = 50;
         let happyLevel = 50;
         let energyLevel = 50;
 
-        
         let foods = 1;
         let toys = 1;
         let energy = 1;
+
+        function eat() {
+            if (hungerLevel <= 40) {
+                hungerLevel += 10;
+                foods--;
+            } else if (hungerLevel < 50){
+                hungerLevel = 50;
+                foods--;
+            } else {
+                alert("I'm not hungry!");
+            }
+        }
+
+        function play() {
+            if (happyLevel <= 40) {
+                happyLevel += 10;
+                toys--;
+            } else if (happyLevel < 50) {
+                happyLevel = 50;
+                toys--;
+            } else {
+                alert("I don't need to play right now!");
+            }
+        }
+
+        function rest() {
+            if (energyLevel <= 40) {
+                energyLevel += 10;
+                energy--;
+            } else if (energyLevel < 50) {
+                energyLevel = 50;
+                energy--;
+            } else {
+                alert("I'm not tired!");
+            }
+        }
+
+        function addTask(task, points) {
+            customArray.push(task);
+            customPoints.push(points);
+        }
     }
 
     update () {
