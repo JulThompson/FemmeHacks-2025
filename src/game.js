@@ -101,7 +101,7 @@ class GameScene extends Phaser.Scene
             color: 'black',
         })
        
-        let eatingHeader = this.add.text(700, 90, "⏷Sustainable Eating: Food", {
+        let eatingHeader = this.add.text(700, 90, "\u{1F783} Sustainable Eating: Food", {
             fontFamily: 'Stardew_Valley',
             fontSize: '25px',
             color: 'black'
@@ -109,7 +109,7 @@ class GameScene extends Phaser.Scene
         .setInteractive({ useHandCursor: true })
         .on('pointerdown', displayEatingTasks);
         
-        let reduceHeader = this.add.text(700, 130, "⏷Reduce Waste: Toys", {
+        let reduceHeader = this.add.text(700, 130, "\u{1F783} Reduce Waste: Toys", {
             fontFamily: 'Stardew_Valley',
             fontSize: '25px',
             color: 'black'
@@ -117,7 +117,7 @@ class GameScene extends Phaser.Scene
         .setInteractive({ useHandCursor: true })
         .on('pointerdown', displayReduceTasks);
 
-        let customHeader = this.add.text(700, 170, "⏷Custom Tasks", {
+        let customHeader = this.add.text(700, 170, "\u{1F783} Custom Tasks", {
             fontFamily: 'Stardew_Valley',
             fontSize: '25px',
             color: 'black'
