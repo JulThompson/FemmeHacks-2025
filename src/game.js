@@ -43,14 +43,32 @@ class GameScene extends Phaser.Scene
             "Read a blog about sustainable food.",
             "Try a new meat alternative."
         ];
-        
-        let eatingPoints = [];
+        let eatingPoints = [3, 3, 5, 3, 3, 1, 1, 1, 1];
 
-        let reduceArray = [];
-        let reducePoints = [];
+        let reduceArray = [
+            "Use a reusable water bottle.",
+            "Bring a reusable cup the next time you go to a café or coffee shop.",
+            "Use reusable bags on your trip to the grocery store.",
+            "Ride a bike to your destination.",
+            "Carpool with your friends.",
+            "Shop at a second-hand store.",
+            "Buy a new energy efficient appliance.",
+            "Donate old clothing."
+        ];
+        let reducePoints = [1, 1, 1, 3, 1, 3, 5, 3];
 
         let customArray = [];
         let customPoints = [];
+
+
+        let hungerLevel = 50;
+        let happyLevel = 50;
+        let energyLevel = 50;
+
+        
+        let foods = 1;
+        let toys = 1;
+        let energy = 1;
     }
 
     update () {
