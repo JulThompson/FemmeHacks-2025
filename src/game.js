@@ -12,24 +12,27 @@ class GameScene extends Phaser.Scene
         this.load.image('homeboard', 'assets/images/homeboard.png');
         this.load.image('button', 'assets/images/button.png');
 
-        this.load.spritesheet('raccoon_1_idle', 'assets/sprites/raccoon-1/idle.png', { frameWidth: 174, frameHeight: 162 });
+        this.load.spritesheet('raccoon_1_idle', 'assets/sprites/raccoon.png', { frameWidth: 32, frameHeight: 33 });
     }
 
     create () {
         this.add.image(0, 0, 'grass_background').setOrigin(0, 0).setScale(2.2);
-        this.physics.add.image(880, 315, 'taskboard').setScale(10);
+        this.physics.add.image(883, 315, 'taskboard').setScale(10);
         this.add.image(320, 230, 'homeboard').setScale(16);
+        this.add.image(320, 230, 'raccoon_background').setScale(0.85);
         
-        this.food_button = this.physics.add.image(275, 525, 'button').setScale(10);
+        this.food_button = this.physics.add.image(120, 500, 'button').setScale(10);
+        this.toy_button = this.physics.add.image(318, 500, 'button').setScale(10);
+        this.energy_button = this.physics.add.image(520, 500, 'button').setScale(10);
         
-        this.anims.create({
-            key: 'raccoon_1_idle',
-            frames: this.anims.generateFrameNumbers('raccoon_1_idle', { start: 0, end: 4 }),
-            frameRate: 7,
-            repeat: -1
-        });
+        // this.anims.create({
+        //     key: 'raccoon_1_idle',
+        //     frames: this.anims.generateFrameNumbers('raccoon_1_idle', { start: 0, end: 4 }),
+        //     frameRate: 7,
+        //     repeat: -1
+        // });
 
-        this.raccoon_1 = this.physics.add.sprite(375, 280, 'raccoon_1_idle').setScale(1);
+        this.raccoon_1 = this.physics.add.sprite(375, 310, 'raccoon_1_idle').setScale(3);
 
 
         let eatingArray = [
@@ -111,7 +114,7 @@ class GameScene extends Phaser.Scene
     }
 
     update () {
-        this.raccoon_1.anims.play('raccoon_1_idle', true);
+        // this.raccoon_1.anims.play('raccoon_1_idle', true);
     }
 }
 
