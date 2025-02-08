@@ -22,7 +22,7 @@ class GameScene extends Phaser.Scene
         this.add.image(320, 230, 'raccoon_background').setScale(0.85);
         
         this.food_button = this.physics.add.image(120, 500, 'button').setScale(10);
-        this.toy_button = this.physics.add.image(318, 500, 'button').setScale(10);
+        this.toy_button = this.physics.add.image(320, 500, 'button').setScale(10);
         this.energy_button = this.physics.add.image(520, 500, 'button').setScale(10);
         
         // this.anims.create({
