@@ -59,8 +59,17 @@ class GameScene extends Phaser.Scene
             element.visible = false;
             eatingElements.push(element);
 
-            let corresponding_button = this.add.sprite(700, 130 + (22*i), 'unfinished_icon').setScale(0.7);
+            let corresponding_button = this.add.image(700, 130 + (22*i), 'unfinished_icon').setScale(0.7);
             corresponding_button.visible = false;
+            corresponding_button.setInteractive();
+            corresponding_button.on('pointerdown', () => {
+                corresponding_button.setTexture('done_icon');
+                this.time.delayedCall(1000, () => {
+                    corresponding_button.setTexture('unfinished_icon');
+                }, [], this);
+            });
+            corresponding_button.on('pointerover', () => vol.setTint(0xcccccc));
+            corresponding_button.on('pointerout', () => vol.setTint(0xffffff));
             eatingButtons.push(corresponding_button);
         }
 
@@ -86,8 +95,17 @@ class GameScene extends Phaser.Scene
             element.visible = false;
             reduceElements.push(element);
 
-            let corresponding_button = this.add.sprite(700, 180 + (22*i), 'unfinished_icon').setScale(0.7);
+            let corresponding_button = this.add.image(700, 180 + (22*i), 'unfinished_icon').setScale(0.7);
             corresponding_button.visible = false;
+            corresponding_button.setInteractive();
+            corresponding_button.on('pointerdown', () => {
+                corresponding_button.setTexture('done_icon');
+                this.time.delayedCall(1000, () => {
+                    corresponding_button.setTexture('unfinished_icon');
+                }, [], this);
+            });
+            corresponding_button.on('pointerover', () => vol.setTint(0xcccccc));
+            corresponding_button.on('pointerout', () => vol.setTint(0xffffff));
             reduceButtons.push(corresponding_button);
         }
 
@@ -104,8 +122,17 @@ class GameScene extends Phaser.Scene
             element.visible = false;
             customElements.push(element);
 
-            let corresponding_button = this.add.sprite(700, 220 + (22*i), 'unfinished_icon').setScale(0.7);
+            let corresponding_button = this.add.image(700, 220 + (22*i), 'unfinished_icon').setScale(0.7);
             corresponding_button.visible = false;
+            corresponding_button.setInteractive();
+            corresponding_button.on('pointerdown', () => {
+                corresponding_button.setTexture('done_icon');
+                this.time.delayedCall(1000, () => {
+                    corresponding_button.setTexture('unfinished_icon');
+                }, [], this);
+            });
+            corresponding_button.on('pointerover', () => vol.setTint(0xcccccc));
+            corresponding_button.on('pointerout', () => vol.setTint(0xffffff));
             customButtons.push(corresponding_button);
         }
 
