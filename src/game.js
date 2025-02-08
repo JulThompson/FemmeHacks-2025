@@ -46,9 +46,11 @@ class GameScene extends Phaser.Scene
             "Read a blog about sustainable food.",
             "Try a new meat alternative.",
             "Freeze extra food for a later meal.",
-            "Make a meal with leftovers."
+            "Make a meal with leftovers.",
+            "Compile a list of plant-based and sustainable recipes."
         ];
-        let eatingPoints = [3, 3, 5, 3, 3, 1, 1, 1, 1, 1, 3];
+        let eatingPoints = [3, 3, 5, 3, 5, 3, 1, 1, 1, 1, 3, 5];
+        let eatingElements;
 
         let reduceArray = [
             "Use a reusable water bottle.",
@@ -61,9 +63,11 @@ class GameScene extends Phaser.Scene
             "Donate old clothing."
         ];
         let reducePoints = [1, 1, 1, 3, 1, 3, 5, 3];
+        let reduceElements;
 
         let customArray = [];
         let customPoints = [];
+        let customElements;
 
         let hungerLevel = 50;
         let happyLevel = 50;
@@ -72,6 +76,48 @@ class GameScene extends Phaser.Scene
         let foods = 1;
         let toys = 1;
         let energy = 1;
+
+        this.add.text(925, 50, "Tasks", {
+            fontFamily: 'myFont',
+            fontSize: '25px',
+            color: 'black',
+        })
+        this.add.text(700, 80, "Sustainable Eating: Food", {
+            fontFamily: 'myFont',
+            fontSize: '20px',
+            color: 'black'
+        })
+            // .on('pointerdown', displayEatingTasks);
+        for (let i = 0; i < eatingArray.length; i++) {
+            element = this.add.text(725, 110 + (22*i), eatingArray[i], {
+                fontFamily: 'myFont',
+                color: 'black'
+            });
+            // element.visible = false;
+            eatingElements.push(element);
+        }
+        this.add.text(700, 380, "Reduce Waste: Toys", {
+            fontFamily: 'myFont',
+            fontSize: '20px',
+            color: 'black'
+        })
+        for (let i = 0; i < reduceArray.length; i++) {
+            element = this.add.text(725, 400 + (22*i), reduceArray[i], {
+                fontFamily: 'myFont',
+                color: 'black'
+            });
+            // element.visible = false;
+            reduceElements.push(element);
+        }
+
+        // function displayEatingTasks() {
+        //     for (let i = 0; i < eatingElements.length; i++) {
+        //         eatingElements[i].visible = true;
+        //     }
+        //     for (let i = 0; i < reduceElements.length; i++) {
+        //         reduceElements[i].visible = false;
+        //     }
+        // }
 
         function eat() {
             if (hungerLevel <= 40) {
@@ -112,6 +158,21 @@ class GameScene extends Phaser.Scene
         function addTask(task, points) {
             customArray.push(task);
             customPoints.push(points);
+        }
+
+        function addFood(task) {
+            let index = eatingArray.indexOf(task);
+            food += eatingPoints[index];
+        }
+
+        function addToy(task) {
+            let index = reduceArray.indexOf(task);
+            toys += reducePoints[index];
+        }
+
+        function addEnergy(task) {
+            let index = customArray.indexOf(task);
+            energy += customPoints[index];
         }
     }
 
