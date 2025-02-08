@@ -76,6 +76,17 @@ class GameScene extends Phaser.Scene
             corresponding_button.setInteractive();
             corresponding_button.on('pointerdown', () => {
                 corresponding_button.setTexture('done_icon');
+                if (eatingPoints[i] >= 5) {
+                    this.raccoon_1.anims.play('raccoon_1_dance', false);
+                }
+                foods += eatingPoints[i];
+                this.food_text.setText(foods + 'x');
+                addToy(reducePoints[i]);
+                if (reducePoints[i] >= 5) {
+                    this.raccoon_1.anims.play('raccoon_1_dance', false);
+                }
+                toys += reducePoints[i];
+                this.toy_text.setText(toys + 'x');
                 this.time.delayedCall(1000, () => {
                     corresponding_button.setTexture('unfinished_icon');
                 }, [], this);
@@ -112,6 +123,11 @@ class GameScene extends Phaser.Scene
             corresponding_button.setInteractive();
             corresponding_button.on('pointerdown', () => {
                 corresponding_button.setTexture('done_icon');
+                if (recyclePoints[i] >= 5) {
+                    this.raccoon_1.anims.play('raccoon_1_dance', false);
+                }
+                energy += recyclePoints[i];
+                this.energy_text.setText(energy + 'x');
                 this.time.delayedCall(1000, () => {
                     corresponding_button.setTexture('unfinished_icon');
                 }, [], this);
@@ -195,7 +211,7 @@ class GameScene extends Phaser.Scene
         let recycleCategoryButton = this.add.image(700, 453, 'expand_icon');
             recycleCategoryButton.setInteractive();
             recycleCategoryButton.on('pointerdown', () => {
-                displayCustomTasks();
+                displayrecycleTasks();
             });
         let recycleHeader = this.add.text(720, 440, "Recycling Tasks", {
             fontFamily: 'Stardew_Valley',
@@ -374,32 +390,6 @@ class GameScene extends Phaser.Scene
             loop: true
         });
         this.add.text(420, 100, 'Energy', {fontFamily: 'Stardew_Valley', fill : '#000000'}).setScale(1.8);
-
-        function addTask(task, points) {
-            recycleArray.push(task);
-            recyclePoints.push(points);
-            let element = this.add.text(725, 200 + (22*recycleArray.length), task, {
-                fontFamily: 'Stardew_Valley',
-                color: 'black'
-            });
-            element.visible = false;
-            recycleElements.push(element);
-        }
-
-        function addFood(task) {
-            let index = eatingArray.indexOf(task);
-            food += eatingPoints[index];
-        }
-
-        function addToy(task) {
-            let index = reduceArray.indexOf(task);
-            toys += reducePoints[index];
-        }
-
-        function addEnergy(task) {
-            let index = recycleArray.indexOf(task);
-            energy += recyclePoints[index];
-        }
         
         this.food_button = this.add.image(120, 500, 'button').setScale(10);
         this.add.image(120, 500, 'food').setScale(0.2);
