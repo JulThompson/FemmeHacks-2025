@@ -64,10 +64,11 @@ class GameScene extends Phaser.Scene
                 fontSize: '20px',
                 color: 'green'
             });
+            element.visible = true;
             eatingElements.push(element);
 
             let corresponding_button = this.add.image(700, 130 + (22*i), 'unfinished_icon').setScale(0.7);
-            corresponding_button.visible = false;
+            corresponding_button.visible = true;
             corresponding_button.setInteractive();
             corresponding_button.on('pointerdown', () => {
                 corresponding_button.setTexture('done_icon');
@@ -75,8 +76,8 @@ class GameScene extends Phaser.Scene
                     corresponding_button.setTexture('unfinished_icon');
                 }, [], this);
             });
-            corresponding_button.on('pointerover', () => vol.setTint(0xcccccc));
-            corresponding_button.on('pointerout', () => vol.setTint(0xffffff));
+            corresponding_button.on('pointerover', () => corresponding_button.setTint(0xcccccc));
+            corresponding_button.on('pointerout', () => corresponding_button.setTint(0xffffff));
             eatingButtons.push(corresponding_button);
         }
 
@@ -111,8 +112,8 @@ class GameScene extends Phaser.Scene
                     corresponding_button.setTexture('unfinished_icon');
                 }, [], this);
             });
-            corresponding_button.on('pointerover', () => vol.setTint(0xcccccc));
-            corresponding_button.on('pointerout', () => vol.setTint(0xffffff));
+            corresponding_button.on('pointerover', () => corresponding_button.setTint(0xcccccc));
+            corresponding_button.on('pointerout', () => corresponding_button.setTint(0xffffff));
             reduceButtons.push(corresponding_button);
         }
 
@@ -138,8 +139,8 @@ class GameScene extends Phaser.Scene
                     corresponding_button.setTexture('unfinished_icon');
                 }, [], this);
             });
-            corresponding_button.on('pointerover', () => vol.setTint(0xcccccc));
-            corresponding_button.on('pointerout', () => vol.setTint(0xffffff));
+            corresponding_button.on('pointerover', () => corresponding_button.setTint(0xcccccc));
+            corresponding_button.on('pointerout', () => corresponding_button.setTint(0xffffff));
             customButtons.push(corresponding_button);
         }
 
@@ -186,19 +187,27 @@ class GameScene extends Phaser.Scene
             for (let i = 0; i < eatingElements.length; i++) {
                 if (eatingElements[i].visible) {
                     eatingElements[i].visible = false;
+                    eatingButtons[i].setInteractive(false);
+                    eatingButtons[i].visible = false;
                     reduceHeader.y = 130;
                     customHeader.y = 170;
                 } else {
                     eatingElements[i].visible = true;
+                    eatingButtons[i].setInteractive(true);
+                    eatingButtons[i].visible = true;
                     reduceHeader.y = 400;
                     customHeader.y = 440;
                 }
             }
             for (let i = 0; i < reduceElements.length; i++) {
                 reduceElements[i].visible = false;
+                reduceButtons[i].setInteractive(false);
+                reduceButtons[i].visible = false;
             }
             for (let i = 0; i < customElements.length; i++) {
                 customElements[i].visible = false;
+                customButtons[i].setInteractive(false);
+                customButtons[i].visible = false;
             }
         }
 
@@ -206,18 +215,26 @@ class GameScene extends Phaser.Scene
             for (let i = 0; i < reduceElements.length; i++) {
                 if (reduceElements[i].visible) {
                     reduceElements[i].visible = false;
+                    reduceButtons[i].setInteractive(false);
+                    reduceButtons[i].visible = false;
                     customHeader.y = 170;
                 } else {
                     reduceElements[i].visible = true;
+                    reduceButtons[i].setInteractive(true);
+                    reduceButtons[i].visible = true;
                     customHeader.y = 360;
                     reduceHeader.y = 130;
                 }
             }
             for (let i = 0; i < eatingElements.length; i++) {
                 eatingElements[i].visible = false;
+                eatingButtons[i].setInteractive(false);
+                eatingButtons[i].visible = false;
             }
             for (let i = 0; i < customElements.length; i++) {
                 customElements[i].visible = false;
+                customButtons[i].setInteractive(false);
+                customButtons[i].visible = false;
             }
         }
 
@@ -225,17 +242,25 @@ class GameScene extends Phaser.Scene
             for (let i = 0; i < customElements.length; i++) {
                 if (customElements[i].visible) {
                     customElements[i].visible = false;
+                    customButtons[i].setInteractive(false);
+                    customButtons[i].visible = false;
                 } else {
                     customElements[i].visible = true;
+                    customButtons[i].setInteractive(true);
+                    customButtons[i].visible = true;
                     reduceHeader.y = 130;
                     customHeader.y = 170;
                 }
             }
             for (let i = 0; i < eatingElements.length; i++) {
                 eatingElements[i].visible = false;
+                eatingButtons[i].setInteractive(false);
+                eatingButtons[i].visible = false;
             }
             for (let i = 0; i < reduceElements.length; i++) {
                 reduceElements[i].visible = false;
+                reduceButtons[i].setInteractive(false);
+                reduceButtons[i].visible = false;
             }
         }
 
