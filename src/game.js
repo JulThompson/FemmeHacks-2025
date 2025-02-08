@@ -17,6 +17,11 @@ class GameScene extends Phaser.Scene
         this.load.image('toy', 'assets/images/toy.png');
         this.load.image('energy', 'assets/images/energy.png');
 
+        this.load.image('stat_bar', 'assets/images/stat-bar.png');
+        this.load.image('food_bar', 'assets/images/food-bar.png');
+        this.load.image('toy_bar', 'assets/images/toy-bar.png');
+        this.load.image('energy_bar', 'assets/images/energy-bar.png');
+
         this.load.spritesheet('raccoon_1_idle', 'assets/sprites/raccoon.png', { frameWidth: 32, frameHeight: 33 });
     }
 
@@ -263,6 +268,13 @@ class GameScene extends Phaser.Scene
         this.add.image(520, 585, 'inventory').setScale(0.75);
         this.energy_text = this.add.text(508, 568, energy + 'x', {fontFamily: 'Stardew_Valley', fill : '#000000'}).setScale(1.8);
 
+        this.add.image(160, 80, 'stat_bar').setScale(2.7);
+        this.add.image(320, 80, 'stat_bar').setScale(2.7);
+        this.add.image(480, 80, 'stat_bar').setScale(2.7);
+
+        this.food_bar = this.add.sprite(160, 81, 'food_bar').setScale(2.62);
+        this.toy_bar = this.add.sprite(320, 81, 'toy_bar').setScale(2.62);
+        this.energy_bar = this.add.sprite(480, 81, 'energy_bar').setScale(2.62);
         
         // this.anims.create({
         //     key: 'raccoon_1_idle',
