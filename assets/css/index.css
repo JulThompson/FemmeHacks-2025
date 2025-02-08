@@ -1,6 +1,6 @@
 @font-face {
-    font-family: myFont;
-    src: url(Stardew_Valley.ttf);
+    font-family: Stardew_Valley;
+    src: url('../css/Stardew_Valley.ttf');
  }
 
  body {

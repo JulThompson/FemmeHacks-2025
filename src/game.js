@@ -8,22 +8,40 @@ class GameScene extends Phaser.Scene
         this.load.image('raccoon_background', 'assets/images/raccoon-background.jpg');
         this.load.image('grass_background', 'assets/images/grass-background.webp');
         
-        this.load.image('taskboard', 'assets/images/taskboard.png');
-        this.load.image('homeboard', 'assets/images/homeboard.png');
+        this.load.image('task_board', 'assets/images/task-board.png');
+        this.load.image('home_board', 'assets/images/home-board.png');
         this.load.image('button', 'assets/images/button.png');
+        this.load.image('inventory', 'assets/images/inventory-board.webp');
+
+        this.load.image('food', 'assets/images/apple.png');
+        this.load.image('toy', 'assets/images/toy.png');
+        this.load.image('water', 'assets/images/water.png');
 
         this.load.spritesheet('raccoon_1_idle', 'assets/sprites/raccoon.png', { frameWidth: 32, frameHeight: 33 });
     }
 
     create () {
         this.add.image(0, 0, 'grass_background').setOrigin(0, 0).setScale(2.2);
-        this.physics.add.image(883, 315, 'taskboard').setScale(10);
-        this.add.image(320, 230, 'homeboard').setScale(16);
+        this.add.image(883, 315, 'task_board').setScale(10);
+        this.add.image(320, 230, 'home_board').setScale(16);
         this.add.image(320, 230, 'raccoon_background').setScale(0.85);
         
-        this.food_button = this.physics.add.image(120, 500, 'button').setScale(10);
-        this.toy_button = this.physics.add.image(320, 500, 'button').setScale(10);
-        this.energy_button = this.physics.add.image(520, 500, 'button').setScale(10);
+        this.food_button = this.add.image(120, 500, 'button').setScale(10);
+        this.add.image(120, 500, 'food').setScale(0.2);
+
+        this.toy_button = this.add.image(320, 500, 'button').setScale(10);
+        this.add.image(320, 500, 'toy').setScale(0.14);
+
+        this.energy_button = this.add.image(520, 500, 'button').setScale(10);
+        this.add.image(520, 500, 'water').setScale(0.09);
+
+        this.add.image(120, 585, 'inventory').setScale(0.75);
+        this.food_text = this.add.text(105, 565, foods + 'x', {fontFamily: 'Stardew_Valley', fill : '#000000'}).setScale(2);
+
+        this.toy_text = this.add.image(320, 585, 'inventory').setScale(0.75);
+
+        this.energy_text = this.add.image(520, 585, 'inventory').setScale(0.75);
+
         
         // this.anims.create({
         //     key: 'raccoon_1_idle',
@@ -32,7 +50,7 @@ class GameScene extends Phaser.Scene
         //     repeat: -1
         // });
 
-        this.raccoon_1 = this.physics.add.sprite(310, 290, 'raccoon_1_idle').setScale(3);
+        this.raccoon_1 = this.add.sprite(310, 290, 'raccoon_1_idle').setScale(3);
 
 
         let eatingArray = [
