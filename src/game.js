@@ -26,33 +26,6 @@ class GameScene extends Phaser.Scene
         this.add.image(320, 230, 'home_board').setScale(16);
         this.add.image(320, 230, 'raccoon_background').setScale(0.85);
         
-        this.food_button = this.add.image(120, 500, 'button').setScale(10);
-        this.add.image(120, 500, 'food').setScale(0.2);
-
-        this.toy_button = this.add.image(320, 500, 'button').setScale(10);
-        this.add.image(320, 500, 'toy').setScale(0.14);
-
-        this.energy_button = this.add.image(520, 500, 'button').setScale(10);
-        this.add.image(520, 500, 'water').setScale(0.09);
-
-        this.add.image(120, 585, 'inventory').setScale(0.75);
-        this.food_text = this.add.text(105, 565, foods + 'x', {fontFamily: 'Stardew_Valley', fill : '#000000'}).setScale(2);
-
-        this.toy_text = this.add.image(320, 585, 'inventory').setScale(0.75);
-
-        this.energy_text = this.add.image(520, 585, 'inventory').setScale(0.75);
-
-        
-        // this.anims.create({
-        //     key: 'raccoon_1_idle',
-        //     frames: this.anims.generateFrameNumbers('raccoon_1_idle', { start: 0, end: 4 }),
-        //     frameRate: 7,
-        //     repeat: -1
-        // });
-
-        this.raccoon_1 = this.add.sprite(310, 290, 'raccoon_1_idle').setScale(3);
-
-
         let eatingArray = [
             "Make a vegan meal for lunch or dinner.",
             "Make a meal with seasonal food items",
@@ -71,7 +44,7 @@ class GameScene extends Phaser.Scene
         let eatingElements = [];
         for (let i = 0; i < eatingArray.length; i++) {
             let element = this.add.text(725, 110 + (22*i), eatingArray[i], {
-                fontFamily: 'myFont',
+                fontFamily: 'Stardew_Valley',
                 color: 'black'
             });
             element.visible = false;
@@ -92,7 +65,7 @@ class GameScene extends Phaser.Scene
         let reduceElements = [];
         for (let i = 0; i < reduceArray.length; i++) {
             let element = this.add.text(725, 150 + (22*i), reduceArray[i], {
-                fontFamily: 'myFont',
+                fontFamily: 'Stardew_Valley',
                 color: 'black'
             });
             element.visible = false;
@@ -104,7 +77,7 @@ class GameScene extends Phaser.Scene
         let customElements = [];
         for (let i = 0; i < customArray.length; i++) {
             let element = this.add.text(725, 200 + (22*i), customArray[i], {
-                fontFamily: 'myFont',
+                fontFamily: 'Stardew_Valley',
                 color: 'black'
             });
             element.visible = false;
@@ -120,13 +93,13 @@ class GameScene extends Phaser.Scene
         let energy = 1;
 
         this.add.text(925, 50, "Tasks", {
-            fontFamily: 'myFont',
+            fontFamily: 'Stardew_Valley',
             fontSize: '25px',
             color: 'black',
         })
        
         let eatingHeader = this.add.text(700, 80, "Sustainable Eating: Food", {
-            fontFamily: 'myFont',
+            fontFamily: 'Stardew_Valley',
             fontSize: '20px',
             color: 'black'
         })
@@ -134,7 +107,7 @@ class GameScene extends Phaser.Scene
         .on('pointerdown', displayEatingTasks);
         
         let reduceHeader = this.add.text(700, 120, "Reduce Waste: Toys", {
-            fontFamily: 'myFont',
+            fontFamily: 'Stardew_Valley',
             fontSize: '20px',
             color: 'black'
         })
@@ -142,7 +115,7 @@ class GameScene extends Phaser.Scene
         .on('pointerdown', displayReduceTasks);
 
         let customHeader = this.add.text(700, 160, "Custom Tasks", {
-            fontFamily: 'myFont',
+            fontFamily: 'Stardew_Valley',
             fontSize: '20px',
             color: 'black'
         })
@@ -247,7 +220,7 @@ class GameScene extends Phaser.Scene
             customArray.push(task);
             customPoints.push(points);
             let element = this.add.text(725, 200 + (22*customArray.length), task, {
-                fontFamily: 'myFont',
+                fontFamily: 'Stardew_Valley',
                 color: 'black'
             });
             element.visible = false;
@@ -268,6 +241,32 @@ class GameScene extends Phaser.Scene
             let index = customArray.indexOf(task);
             energy += customPoints[index];
         }
+        
+        this.food_button = this.add.image(120, 500, 'button').setScale(10);
+        this.add.image(120, 500, 'food').setScale(0.2);
+
+        this.toy_button = this.add.image(320, 500, 'button').setScale(10);
+        this.add.image(320, 500, 'toy').setScale(0.14);
+
+        this.energy_button = this.add.image(520, 500, 'button').setScale(10);
+        this.add.image(520, 500, 'water').setScale(0.09);
+
+        this.add.image(120, 585, 'inventory').setScale(0.75);
+        this.food_text = this.add.text(108, 568, foods + 'x', {fontFamily: 'Stardew_Valley', fill : '#000000'}).setScale(1.8);
+
+        this.toy_text = this.add.image(320, 585, 'inventory').setScale(0.75);
+
+        this.energy_text = this.add.image(520, 585, 'inventory').setScale(0.75);
+
+        
+        // this.anims.create({
+        //     key: 'raccoon_1_idle',
+        //     frames: this.anims.generateFrameNumbers('raccoon_1_idle', { start: 0, end: 4 }),
+        //     frameRate: 7,
+        //     repeat: -1
+        // });
+
+        this.raccoon_1 = this.add.sprite(310, 290, 'raccoon_1_idle').setScale(3);
     }
 
     update () {
