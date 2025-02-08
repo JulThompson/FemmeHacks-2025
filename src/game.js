@@ -41,6 +41,8 @@ class GameScene extends Phaser.Scene
         this.add.image(320, 230, 'home_board').setScale(16);
         this.add.image(320, 230, 'raccoon_background').setScale(0.85);
         
+
+
         let eatingArray = [
             "(3) Make a vegan meal for lunch or dinner.",
             "(3) Make a meal with seasonal food items.",
@@ -256,6 +258,9 @@ class GameScene extends Phaser.Scene
             }
         }
 
+
+
+
         this.hunger_level = 50;
         this.happy_level = 50;
         this.energy_level = 50;
@@ -357,12 +362,8 @@ class GameScene extends Phaser.Scene
         this.toy_bar = this.add.sprite(320, 81, 'toy_bar').setScale(2.62);
         this.energy_bar = this.add.sprite(480, 81, 'energy_bar').setScale(2.62);
         
-        // this.anims.create({
-        //     key: 'raccoon_1_idle',
-        //     frames: this.anims.generateFrameNumbers('raccoon_1_idle', { start: 0, end: 4 }),
-        //     frameRate: 7,
-        //     repeat: -1
-        // });
+
+
         this.anims.create({
             key: 'raccoon_1_dance',
             frames: this.anims.generateFrameNumbers('raccoon_1_dance', { start: 0, end: 5 }),
@@ -399,12 +400,10 @@ class GameScene extends Phaser.Scene
             frameRate: 7,
         })
 
-        // this.raccoon_1 = this.add.sprite(310, 290, 'raccoon_1_idle').setScale(3);
-        this.raccoon_1 = this.add.sprite(310, 290, 'raccoon_1_idle_happy')
+        this.raccoon_1 = this.add.sprite(310, 290, 'raccoon_1_idle_happy').setScale(0.6)
     }
 
     update () {
-        // this.raccoon_1.anims.play('raccoon_1_idle', true);
         this.raccoon_1.anims.play('raccoon_1_idle_happy', true);
     }
 }
