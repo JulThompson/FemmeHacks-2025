@@ -50,7 +50,15 @@ class GameScene extends Phaser.Scene
             "Compile a list of plant-based and sustainable recipes."
         ];
         let eatingPoints = [3, 3, 5, 3, 5, 3, 1, 1, 1, 1, 3, 5];
-        let eatingElements;
+        let eatingElements = [];
+        for (let i = 0; i < eatingArray.length; i++) {
+            let element = this.add.text(725, 110 + (22*i), eatingArray[i], {
+                fontFamily: 'myFont',
+                color: 'black'
+            });
+            element.visible = false;
+            eatingElements.push(element);
+        }
 
         let reduceArray = [
             "Use a reusable water bottle.",
@@ -63,11 +71,27 @@ class GameScene extends Phaser.Scene
             "Donate old clothing."
         ];
         let reducePoints = [1, 1, 1, 3, 1, 3, 5, 3];
-        let reduceElements;
+        let reduceElements = [];
+        for (let i = 0; i < reduceArray.length; i++) {
+            let element = this.add.text(725, 150 + (22*i), reduceArray[i], {
+                fontFamily: 'myFont',
+                color: 'black'
+            });
+            element.visible = false;
+            reduceElements.push(element);
+        }
 
-        let customArray = [];
+        let customArray = ["test", "test2", "test3"];
         let customPoints = [];
-        let customElements;
+        let customElements = [];
+        for (let i = 0; i < customArray.length; i++) {
+            let element = this.add.text(725, 200 + (22*i), customArray[i], {
+                fontFamily: 'myFont',
+                color: 'black'
+            });
+            element.visible = false;
+            customElements.push(element);
+        }
 
         let hungerLevel = 50;
         let happyLevel = 50;
@@ -82,42 +106,88 @@ class GameScene extends Phaser.Scene
             fontSize: '25px',
             color: 'black',
         })
-        this.add.text(700, 80, "Sustainable Eating: Food", {
+       
+        let eatingHeader = this.add.text(700, 80, "Sustainable Eating: Food", {
             fontFamily: 'myFont',
             fontSize: '20px',
             color: 'black'
         })
-            // .on('pointerdown', displayEatingTasks);
-        for (let i = 0; i < eatingArray.length; i++) {
-            element = this.add.text(725, 110 + (22*i), eatingArray[i], {
-                fontFamily: 'myFont',
-                color: 'black'
-            });
-            // element.visible = false;
-            eatingElements.push(element);
-        }
-        this.add.text(700, 380, "Reduce Waste: Toys", {
+        .setInteractive({ useHandCursor: true })
+        .on('pointerdown', displayEatingTasks);
+        
+        let reduceHeader = this.add.text(700, 120, "Reduce Waste: Toys", {
             fontFamily: 'myFont',
             fontSize: '20px',
             color: 'black'
         })
-        for (let i = 0; i < reduceArray.length; i++) {
-            element = this.add.text(725, 400 + (22*i), reduceArray[i], {
-                fontFamily: 'myFont',
-                color: 'black'
-            });
-            // element.visible = false;
-            reduceElements.push(element);
+        .setInteractive({ useHandCursor: true })
+        .on('pointerdown', displayReduceTasks);
+
+        let customHeader = this.add.text(700, 160, "Custom Tasks", {
+            fontFamily: 'myFont',
+            fontSize: '20px',
+            color: 'black'
+        })
+        .setInteractive({ useHandCursor: true })
+        .on('pointerdown', displayCustomTasks);
+
+        function displayEatingTasks() {
+            console.log("hit");
+            for (let i = 0; i < eatingElements.length; i++) {
+                if (eatingElements[i].visible) {
+                    eatingElements[i].visible = false;
+                    reduceHeader.y = 120;
+                    customHeader.y = 160;
+                } else {
+                    eatingElements[i].visible = true;
+                    reduceHeader.y = 380;
+                    customHeader.y = 420;
+                }
+            }
+            for (let i = 0; i < reduceElements.length; i++) {
+                reduceElements[i].visible = false;
+            }
+            for (let i = 0; i < customElements.length; i++) {
+                customElements[i].visible = false;
+            }
         }
 
-        // function displayEatingTasks() {
-        //     for (let i = 0; i < eatingElements.length; i++) {
-        //         eatingElements[i].visible = true;
-        //     }
-        //     for (let i = 0; i < reduceElements.length; i++) {
-        //         reduceElements[i].visible = false;
-        //     }
-        // }
+        function displayReduceTasks() {
+            for (let i = 0; i < reduceElements.length; i++) {
+                if (reduceElements[i].visible) {
+                    reduceElements[i].visible = false;
+                    customHeader.y = 160;
+                } else {
+                    reduceElements[i].visible = true;
+                    customHeader.y = 380;
+                    reduceHeader.y = 120;
+                }
+            }
+            for (let i = 0; i < eatingElements.length; i++) {
+                eatingElements[i].visible = false;
+            }
+            for (let i = 0; i < customElements.length; i++) {
+                customElements[i].visible = false;
+            }
+        }
+
+        function displayCustomTasks() {
+            for (let i = 0; i < customElements.length; i++) {
+                if (customElements[i].visible) {
+                    customElements[i].visible = false;
+                } else {
+                    customElements[i].visible = true;
+                    reduceHeader.y = 120;
+                    customHeader.y = 160;
+                }
+            }
+            for (let i = 0; i < eatingElements.length; i++) {
+                eatingElements[i].visible = false;
+            }
+            for (let i = 0; i < reduceElements.length; i++) {
+                reduceElements[i].visible = false;
+            }
+        }
 
         function eat() {
             if (hungerLevel <= 40) {
@@ -158,6 +228,12 @@ class GameScene extends Phaser.Scene
         function addTask(task, points) {
             customArray.push(task);
             customPoints.push(points);
+            let element = this.add.text(725, 200 + (22*customArray.length), task, {
+                fontFamily: 'myFont',
+                color: 'black'
+            });
+            element.visible = false;
+            customElements.push(element);
         }
 
         function addFood(task) {
