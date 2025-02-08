@@ -310,50 +310,70 @@ class GameScene extends Phaser.Scene
 
 
 
-
-        this.hunger_level = 50;
-        this.happy_level = 50;
-        this.energy_level = 50;
-
         let foods = 1;
         let toys = 1;
         let energy = 1;
 
-        function eat() {
-            if (this.hunger_level <= 40) {
-                this.hunger_level += 10;
-                foods--;
-            } else if (this.hunger_level < 50){
-                this.hunger_level = 50;
-                foods--;
-            } else {
-                alert("I'm not hungry!");
-            }
-        }
+        this.add.image(120, 585, 'inventory').setScale(0.75);
+        this.food_text = this.add.text(108, 568, foods + 'x', {fontFamily: 'Stardew_Valley', fill : '#000000'}).setScale(1.8);
 
-        function play() {
-            if (this.happy_level <= 40) {
-                this.happy_level += 10;
-                toys--;
-            } else if (this.happy_level < 50) {
-                this.happy_level = 50;
-                toys--;
-            } else {
-                alert("I don't need to play right now!");
-            }
-        }
+        this.add.image(320, 585, 'inventory').setScale(0.75);
+        this.toy_text = this.add.text(309, 568, toys + 'x', {fontFamily: 'Stardew_Valley', fill : '#000000'}).setScale(1.8);
 
-        function rest() {
-            if (this.energy_level <= 40) {
-                this.energy_level += 10;
-                energy--;
-            } else if (this.energy_level < 50) {
-                this.energy_level = 50;
-                energy--;
-            } else {
-                alert("I'm not tired!");
-            }
-        }
+        this.add.image(520, 585, 'inventory').setScale(0.75);
+        this.energy_text = this.add.text(508, 568, energy + 'x', {fontFamily: 'Stardew_Valley', fill : '#000000'}).setScale(1.8);
+
+        this.add.image(160, 80, 'stat_bar').setScale(2.7);
+        this.add.image(320, 80, 'stat_bar').setScale(2.7);
+        this.add.image(480, 80, 'stat_bar').setScale(2.7);
+
+        this.food_bar = this.add.sprite(160, 81, 'food_bar').setScale(2.62);
+        this.food_bar_max_width = this.food_bar.width;
+        this.food_bar_width = this.food_bar.width;
+        this.time.addEvent({
+            delay: 6000,
+            callback: function () {
+                this.food_bar_width *= 0.95;
+                if (this.food_bar_width > 0) {
+                    this.food_bar.setCrop(0, 0, this.food_bar_width, 5);
+                }
+            },
+            callbackScope: this,
+            loop: true
+        });
+        this.add.text(100, 100, 'Hunger', {fontFamily: 'Stardew_Valley', fill : '#000000'}).setScale(1.8);
+
+        this.toy_bar = this.add.sprite(320, 81, 'toy_bar').setScale(2.62);
+        this.toy_bar_max_width = this.toy_bar.width;
+        this.toy_bar_width = this.toy_bar.width;
+        this.time.addEvent({
+            delay: 2000,
+            callback: function () {
+                this.toy_bar_width *= 0.95;
+                if (this.toy_bar_width > 0) {
+                    this.toy_bar.setCrop(0, 0, this.toy_bar_width, 5);
+                }
+            },
+            callbackScope: this,
+            loop: true
+        });
+        this.add.text(260, 100, 'Happiness', {fontFamily: 'Stardew_Valley', fill : '#000000'}).setScale(1.8);
+
+        this.energy_bar = this.add.sprite(480, 81, 'energy_bar').setScale(2.62);
+        this.energy_bar_max_width = this.energy_bar.width;
+        this.energy_bar_width = this.energy_bar.width;
+        this.time.addEvent({
+            delay: 4000,
+            callback: function () {
+                this.energy_bar_width *= 0.95;
+                if (this.energy_bar_width > 0) {
+                    this.energy_bar.setCrop(0, 0, this.energy_bar_width, 5);
+                }
+            },
+            callbackScope: this,
+            loop: true
+        });
+        this.add.text(420, 100, 'Energy', {fontFamily: 'Stardew_Valley', fill : '#000000'}).setScale(1.8);
 
         function addTask(task, points) {
             recycleArray.push(task);
@@ -385,74 +405,62 @@ class GameScene extends Phaser.Scene
         this.add.image(120, 500, 'food').setScale(0.2);
         this.food_button.setInteractive();
         if (foods <= 0) {
-            this.food_button.on('pointerover', () => this.food_button.setStyle({fill : '#ffffff'}));
-            this.food_button.on('pointerout', () => this.food_button.setStyle({fill : '#5f3b39'}));
+            this.food_button.setTint(0xcccccc);
         }
+        this.food_button.on('pointerdown', () => {
+            if (foods >= 0) {
+                if (this.food_bar_width <= this.food_bar_max_width) {
+                    this.food_bar_width += 10;
+                } else {
+                    this.food_bar_width = this.food_bar_max_width;
+                    alert("I'm not hungry!");
+                }
+
+                foods--;
+                this.food_text.setText(foods + 'x');
+            }
+        });
 
         this.toy_button = this.add.image(320, 500, 'button').setScale(10);
         this.add.image(320, 500, 'toy').setScale(0.14);
+        this.toy_button.setInteractive();
+        if (toys <= 0) {
+            this.toy_button.setTint(0xcccccc);
+        }
+        this.toy_button.on('pointerdown', () => {
+            if (toys >= 0) {
+                if (this.toy_bar_width <= this.toy_bar_max_width) {
+                    this.toy_bar_width += 10;
+                } else {
+                    this.toy_bar_width = this.toy_bar_max_width;
+                    alert("I don't need to play right now!");
+                }
+
+                toys--;
+                this.toy_text.setText(toys + 'x');
+            }
+        });
 
         this.energy_button = this.add.image(520, 500, 'button').setScale(10);
         this.add.image(520, 500, 'energy').setScale(0.13);
-
-        this.add.image(120, 585, 'inventory').setScale(0.75);
-        this.food_text = this.add.text(108, 568, foods + 'x', {fontFamily: 'Stardew_Valley', fill : '#000000'}).setScale(1.8);
-
-        this.add.image(320, 585, 'inventory').setScale(0.75);
-        this.toy_text = this.add.text(309, 568, toys + 'x', {fontFamily: 'Stardew_Valley', fill : '#000000'}).setScale(1.8);
-
-        this.add.image(520, 585, 'inventory').setScale(0.75);
-        this.energy_text = this.add.text(508, 568, energy + 'x', {fontFamily: 'Stardew_Valley', fill : '#000000'}).setScale(1.8);
-
-        this.add.image(160, 80, 'stat_bar').setScale(2.7);
-        this.add.image(320, 80, 'stat_bar').setScale(2.7);
-        this.add.image(480, 80, 'stat_bar').setScale(2.7);
-
-        this.food_bar = this.add.sprite(160, 81, 'food_bar').setScale(2.62);
-        this.food_bar_width = this.food_bar.width;
-        this.time.addEvent({
-            delay: 90000,
-            callback: function () {
-                this.food_bar_width *= 0.95;
-                if (this.food_bar_width > 0) {
-                    this.food_bar.setCrop(0, 0, this.food_bar_width, 5);
+        this.energy_button.setInteractive();
+        if (energy <= 0) {
+            this.energy_button.setTint(0xcccccc);
+        }
+        this.energy_button.on('pointerdown', () => {
+            if (energy >= 0) {
+                if (this.energy_bar_width <= this.energy_bar_max_width) {
+                    this.energy_bar_width += 10;
+                } else {
+                    this.energy_bar_width = this.energy_bar_max_width;
+                    alert("I'm not tired!");
                 }
-            },
-            callbackScope: this,
-            loop: true
-        });
-        this.add.text(100, 100, 'Hunger', {fontFamily: 'Stardew_Valley', fill : '#000000'}).setScale(1.8);
 
-        this.toy_bar = this.add.sprite(320, 81, 'toy_bar').setScale(2.62);
-        this.toy_bar_width = this.toy_bar.width;
-        this.time.addEvent({
-            delay: 30000,
-            callback: function () {
-                this.toy_bar_width *= 0.95;
-                if (this.toy_bar_width > 0) {
-                    this.toy_bar.setCrop(0, 0, this.toy_bar_width, 5);
-                }
-            },
-            callbackScope: this,
-            loop: true
+                energy--;
+                this.energy_text.setText(energy + 'x');
+            }
         });
-        this.add.text(260, 100, 'Happiness', {fontFamily: 'Stardew_Valley', fill : '#000000'}).setScale(1.8);
 
-        this.energy_bar = this.add.sprite(480, 81, 'energy_bar').setScale(2.62);
-        this.energy_bar_width = this.energy_bar.width;
-        this.time.addEvent({
-            delay: 1200000,
-            callback: function () {
-                this.energy_bar_width *= 0.95;
-                if (this.energy_bar_width > 0) {
-                    this.energy_bar.setCrop(0, 0, this.energy_bar_width, 5);
-                }
-            },
-            callbackScope: this,
-            loop: true
-        });
-        this.add.text(420, 100, 'Energy', {fontFamily: 'Stardew_Valley', fill : '#000000'}).setScale(1.8);
-        
 
         
         this.anims.create({
