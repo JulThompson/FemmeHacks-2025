@@ -9,18 +9,18 @@ class GameScene extends Phaser.Scene
         this.load.image('grass_background', 'assets/images/grass-background.webp');
         
         this.load.image('taskboard', 'assets/images/taskboard.png');
+        this.load.image('homeboard', 'assets/images/homeboard.png');
         this.load.image('button', 'assets/images/button.png');
 
         this.load.spritesheet('raccoon_1_idle', 'assets/sprites/raccoon-1/idle.png', { frameWidth: 174, frameHeight: 162 });
     }
 
     create () {
-        // Add background image
         this.add.image(0, 0, 'grass_background').setOrigin(0, 0).setScale(2.2);
-        this.physics.add.image(975, 325, 'taskboard').setScale(13.7);
+        this.physics.add.image(975, 320, 'taskboard').setScale(13.7);
+        this.add.image(385, 230, 'homeboard').setScale(16.5);
         
         this.food_button = this.physics.add.image(275, 525, 'button').setScale(10);
-
         
         this.anims.create({
             key: 'raccoon_1_idle',
@@ -29,7 +29,7 @@ class GameScene extends Phaser.Scene
             repeat: -1
         });
 
-        this.raccoon_1 = this.physics.add.sprite(325, 340, 'raccoon_1_idle').setScale(1);
+        this.raccoon_1 = this.physics.add.sprite(375, 280, 'raccoon_1_idle').setScale(1);
 
 
         let eatingArray = [
