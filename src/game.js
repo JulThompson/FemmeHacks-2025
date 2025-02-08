@@ -359,8 +359,13 @@ class GameScene extends Phaser.Scene
         this.add.image(480, 80, 'stat_bar').setScale(2.7);
 
         this.food_bar = this.add.sprite(160, 81, 'food_bar').setScale(2.62);
+        this.add.text(100, 100, 'Hunger', {fontFamily: 'Stardew_Valley', fill : '#000000'}).setScale(1.8);
+
         this.toy_bar = this.add.sprite(320, 81, 'toy_bar').setScale(2.62);
+        this.add.text(260, 100, 'Happiness', {fontFamily: 'Stardew_Valley', fill : '#000000'}).setScale(1.8);
+
         this.energy_bar = this.add.sprite(480, 81, 'energy_bar').setScale(2.62);
+        this.add.text(420, 100, 'Energy', {fontFamily: 'Stardew_Valley', fill : '#000000'}).setScale(1.8);
         
 
 
