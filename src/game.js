@@ -32,7 +32,7 @@ class GameScene extends Phaser.Scene
         //     repeat: -1
         // });
 
-        this.raccoon_1 = this.physics.add.sprite(375, 310, 'raccoon_1_idle').setScale(3);
+        this.raccoon_1 = this.physics.add.sprite(310, 290, 'raccoon_1_idle').setScale(3);
 
 
         let eatingArray = [
