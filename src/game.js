@@ -159,7 +159,7 @@ class GameScene extends Phaser.Scene
                     customHeader.y = 160;
                 } else {
                     reduceElements[i].visible = true;
-                    customHeader.y = 380;
+                    customHeader.y = 340;
                     reduceHeader.y = 120;
                 }
             }
