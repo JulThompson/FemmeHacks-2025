@@ -44,9 +44,11 @@ class GameScene extends Phaser.Scene
             "Make a meal plan for the week.",
             "Research companies that sell whole, sustainable food.",
             "Read a blog about sustainable food.",
-            "Try a new meat alternative."
+            "Try a new meat alternative.",
+            "Freeze extra food for a later meal.",
+            "Make a meal with leftovers."
         ];
-        let eatingPoints = [3, 3, 5, 3, 3, 1, 1, 1, 1];
+        let eatingPoints = [3, 3, 5, 3, 3, 1, 1, 1, 1, 1, 3];
 
         let reduceArray = [
             "Use a reusable water bottle.",
