@@ -25,6 +25,14 @@ class GameScene extends Phaser.Scene
         this.load.image('energy_bar', 'assets/images/energy-bar.png');
 
         // this.load.spritesheet('raccoon_1_idle', 'assets/sprites/raccoon.png', { frameWidth: 32, frameHeight: 33 });
+        this.load.spritesheet('raccoon_1_dance', 'assets/sprites/raccoon-1/dance.png', { frameWidth: 227, frameHeight: 188 });
+        this.load.spritesheet('raccoon_1_idle_happy', 'assets/sprites/raccoon-1/idle-happy.png', { frameWidth: 232, frameHeight: 224 });
+        this.load.spritesheet('raccoon_1_idle', 'assets/sprites/raccoon-1/idle.png', { frameWidth: 176.5, frameHeight: 158 }); // he's wiggly :(
+        this.load.spritesheet('raccoon_1_jump', 'assets/sprites/raccoon-1/jump.png', { frameWidth: 145, frameHeight: 188 }); // also a bit rough
+        this.load.spritesheet('raccoon_1_panic', 'assets/sprites/raccoon-1/panic.png', { frameWidth: 209, frameHeight: 198 });
+        this.load.spritesheet('raccoon_1_turn', 'assets/sprites/raccoon-1/turn.png', { frameWidth: 301, frameHeight: 172 });
+
+
     }
 
     create () {
@@ -325,12 +333,49 @@ class GameScene extends Phaser.Scene
         //     frameRate: 7,
         //     repeat: -1
         // });
+        this.anims.create({
+            key: 'raccoon_1_dance',
+            frames: this.anims.generateFrameNumbers('raccoon_1_dance', { start: 0, end: 5 }),
+            frameRate: 7,
+        })
+
+        this.anims.create({
+            key: 'raccoon_1_idle_happy',
+            frames: this.anims.generateFrameNumbers('raccoon_1_idle_happy', { start: 0, end: 2 }),
+            frameRate: 7,
+        })
+
+        this.anims.create({
+            key: 'raccoon_1_idle',
+            frames: this.anims.generateFrameNumbers('raccoon_1_idle', { start: 0, end: 8 }),
+            frameRate: 7,
+        })
+
+        this.anims.create({
+            key: 'raccoon_1_jump',
+            frames: this.anims.generateFrameNumbers('raccoon_1_jump', { start: 0, end: 8 }),
+            frameRate: 7,
+        })
+
+        this.anims.create({
+            key: 'raccoon_1_panic',
+            frames: this.anims.generateFrameNumbers('raccoon_1_panic', { start: 0, end: 5 }),
+            frameRate: 7,
+        })
+
+        this.anims.create({
+            key: 'raccoon_1_turn',
+            frames: this.anims.generateFrameNumbers('raccoon_1_turn', { start: 0, end: 3 }),
+            frameRate: 7,
+        })
 
         // this.raccoon_1 = this.add.sprite(310, 290, 'raccoon_1_idle').setScale(3);
+        this.raccoon_1 = this.add.sprite(310, 290, 'raccoon_1_idle_happy')
     }
 
     update () {
         // this.raccoon_1.anims.play('raccoon_1_idle', true);
+        this.raccoon_1.anims.play('raccoon_1_idle_happy', true);
     }
 }
 
