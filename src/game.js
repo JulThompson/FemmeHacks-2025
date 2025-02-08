@@ -404,11 +404,13 @@ class GameScene extends Phaser.Scene
         this.food_button = this.add.image(120, 500, 'button').setScale(10);
         this.add.image(120, 500, 'food').setScale(0.2);
         this.food_button.setInteractive();
-        if (foods <= 0) {
-            this.food_button.setTint(0xcccccc);
-        }
+        this.food_button.on('pointerover', () => {
+            if (foods > 0) {
+                this.food_button.setTint(0xffffff);
+            }
+        });
         this.food_button.on('pointerdown', () => {
-            if (foods >= 0) {
+            if (foods > 0) {
                 if (this.food_bar_width <= this.food_bar_max_width) {
                     this.food_bar_width += 10;
                 } else {
@@ -418,17 +420,22 @@ class GameScene extends Phaser.Scene
 
                 foods--;
                 this.food_text.setText(foods + 'x');
+                if (foods == 0) {
+                    this.food_button.setTint(0xcccccc);
+                }
             }
         });
 
         this.toy_button = this.add.image(320, 500, 'button').setScale(10);
         this.add.image(320, 500, 'toy').setScale(0.14);
         this.toy_button.setInteractive();
-        if (toys <= 0) {
-            this.toy_button.setTint(0xcccccc);
-        }
+        this.toy_button.on('pointerover', () => {
+            if (toys > 0) {
+                this.toy_button.setTint(0xffffff);
+            }
+        });
         this.toy_button.on('pointerdown', () => {
-            if (toys >= 0) {
+            if (toys > 0) {
                 if (this.toy_bar_width <= this.toy_bar_max_width) {
                     this.toy_bar_width += 10;
                 } else {
@@ -438,17 +445,22 @@ class GameScene extends Phaser.Scene
 
                 toys--;
                 this.toy_text.setText(toys + 'x');
+                if (toys == 0) {
+                    this.toy_button.setTint(0xcccccc);
+                }
             }
         });
 
         this.energy_button = this.add.image(520, 500, 'button').setScale(10);
         this.add.image(520, 500, 'energy').setScale(0.13);
         this.energy_button.setInteractive();
-        if (energy <= 0) {
-            this.energy_button.setTint(0xcccccc);
-        }
+        this.energy_button.on('pointerover', () => {
+            if (energy > 0) {
+                this.energy_button.setTint(0xffffff);
+            }
+        });
         this.energy_button.on('pointerdown', () => {
-            if (energy >= 0) {
+            if (energy > 0) {
                 if (this.energy_bar_width <= this.energy_bar_max_width) {
                     this.energy_bar_width += 10;
                 } else {
@@ -458,6 +470,9 @@ class GameScene extends Phaser.Scene
 
                 energy--;
                 this.energy_text.setText(energy + 'x');
+                if (energy == 0) {
+                    this.energy_button.setTint(0xcccccc);
+                }
             }
         });
 
