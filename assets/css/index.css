@@ -30,10 +30,15 @@
     margin: auto auto 3vh;
     display: block;
     justify-content: center;
-    height: 5vh;
+    height: 6vh;
     width: 20vw;
     background-color: #52796F;
+    /* background-color: #DDA67C;
+    border: #8C4132; */
+    /* background-image: url("../images/homeboard.png"); */
+    border-width: 4px;
     border-radius: 5px;
+    border-style: inset;
     border: #354F52;
  }
 
