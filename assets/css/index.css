@@ -2,12 +2,25 @@
     font-family: myFont;
     src: url(Stardew_Valley.ttf);
  }
+
+ body {
+    background-color: #CAD2C5;
+ }
   
  h1 {
     font-family: myFont;
     text-align: center;
     font-size: 15vh;
-    color: darkgreen;
+    margin-bottom:5vh;
+    color: #354F52;
+ }
+
+ img {
+    display: block;
+    margin: auto;
+    padding-bottom: 5vh;
+    width: 23vw;
+    height: 40vh;
  }
 
  button {
@@ -19,4 +32,59 @@
     justify-content: center;
     height: 5vh;
     width: 20vw;
+    background-color: #52796F;
+    border-radius: 5px;
+    border: #354F52;
  }
+
+ button:hover {
+    background-color: #354F52;
+    border: #52796F;
+ }
+
+ .popup {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    /* overflow: auto; */
+    background-color: rgba(0,0,0,0.4);
+  }
+  
+  .popup-content {
+    font-family: myFont;
+    font-size: 2em;
+    text-align: center;
+    background-color: #fefefe;
+    margin: 10% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    border-radius: 10px;
+    width: 80%;
+    height: 60%;
+  }
+
+  h2 {
+    margin-top: 2px;
+  }
+
+  p {
+    margin: 2vw;
+  }
+  
+  .closeBtn {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+  }
+  
+  .closeBtn:hover,
+  .closeBtn:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+  }

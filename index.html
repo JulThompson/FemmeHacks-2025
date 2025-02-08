@@ -8,8 +8,34 @@
 </head>
 <body>
     <h1>Trash Panda</h1>
-    <img>
+    <img src="assets\images\raccoon-static.png"></img>
     <button onclick="location.href='gamescene.html'">Play!</button>
-    <button onclick="location.href='gamescene.html'">Instructions</button>
+    <button id="openInstructions" onclick="popup.style.display = 'block'">Instructions</button>
+
+  <div id="myPopup" class="popup">
+    <div class="popup-content">
+      <span class="closeBtn" onclick="popup.style.display = 'none'">&times;</span>
+      <h2>Instructions</h2>
+      <p>Welcome to Trash Panda: A game all about sustainability! Complete environmental tasks from the checklist
+        to get food, energy, and toys to keep your racoon happy. But be careful! If you don't keep up with the tasks and any of your
+        pet's stats drop to 0, they will be very sad :(
+      </p>
+      <p>Different tasks have different values. Red tasks are worth 5 resources, blue are worth 3, and white are worth 1. 
+        The more difficult the task, the more resources you get. If you complete one red, two blue, and three white tasks, your raccoon
+        will grow up and you will move to the next stage!
+      </p>
+    </div>
+  </div>
+
+  <script>
+    var popup = document.getElementById("myPopup");
+
+    window.onclick = function(event) {
+        if (event.target == popup) {
+            popup.style.display = "none";
+        }
+    }
+  </script>
+
 </body>
 </html>
