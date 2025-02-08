@@ -15,7 +15,7 @@ class GameScene extends Phaser.Scene
 
         this.load.image('food', 'assets/images/apple.png');
         this.load.image('toy', 'assets/images/toy.png');
-        this.load.image('water', 'assets/images/water.png');
+        this.load.image('energy', 'assets/images/energy.png');
 
         this.load.spritesheet('raccoon_1_idle', 'assets/sprites/raccoon.png', { frameWidth: 32, frameHeight: 33 });
     }
@@ -252,14 +252,16 @@ class GameScene extends Phaser.Scene
         this.add.image(320, 500, 'toy').setScale(0.14);
 
         this.energy_button = this.add.image(520, 500, 'button').setScale(10);
-        this.add.image(520, 500, 'water').setScale(0.09);
+        this.add.image(520, 500, 'energy').setScale(0.13);
 
         this.add.image(120, 585, 'inventory').setScale(0.75);
         this.food_text = this.add.text(108, 568, foods + 'x', {fontFamily: 'Stardew_Valley', fill : '#000000'}).setScale(1.8);
 
-        this.toy_text = this.add.image(320, 585, 'inventory').setScale(0.75);
+        this.add.image(320, 585, 'inventory').setScale(0.75);
+        this.toy_text = this.add.text(309, 568, toys + 'x', {fontFamily: 'Stardew_Valley', fill : '#000000'}).setScale(1.8);
 
-        this.energy_text = this.add.image(520, 585, 'inventory').setScale(0.75);
+        this.add.image(520, 585, 'inventory').setScale(0.75);
+        this.energy_text = this.add.text(508, 568, energy + 'x', {fontFamily: 'Stardew_Valley', fill : '#000000'}).setScale(1.8);
 
         
         // this.anims.create({
