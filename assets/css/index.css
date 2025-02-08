@@ -10,23 +10,32 @@ body {
 }
 
 .container {
-   margin: 20vh auto;
-   width: 80vw;
+   margin: auto;
+   width: 60vw;
    grid-template-columns: auto auto auto;
    display: grid;
 }
 
-h1 {
+
+#title {
+   margin-top: 10vh;
+   height: 40vh;
+   width: 40vw;
+   padding-bottom: 0px;
+}
+
+
+/* h1 {
    font-family: Stardew_Valley;
    text-align: center;
    font-size: 15vh;
    margin-bottom: 5vh;
    color: #354F52;
-}
+} */
 
 img {
    display: block;
-   margin: 20vh auto;
+   margin: auto;
    padding-bottom: 5vh;
    width: 15vw;
    height: 35vh;
@@ -36,13 +45,13 @@ button {
    font-family: Stardew_Valley;
    font-size: 2em;
    padding-bottom: 10px;
-   margin: auto auto 3vh;
+   margin: 8vh auto 3vh;
    display: block;
    justify-content: center;
    height: 6vh;
    width: 20vw;
    /* background-color: #52796F; */
-   background-color: #FFD29E;
+   background-color: #DDA67C;
    border: #8C4132;
    /* background-image: url("../images/homeboard.png"); */
    border-width: 4px;
@@ -52,7 +61,7 @@ button {
 }
 
 button:hover {
-   background-color: #DDA67C;
+   background-color: #c68f64;
 }
 
 .popup {
@@ -63,7 +72,6 @@ button:hover {
    top: 0;
    width: 100%;
    height: 100%;
-   /* overflow: auto; */
    background-color: rgba(0, 0, 0, 0.4);
 }
 
@@ -71,8 +79,7 @@ button:hover {
    font-family: Stardew_Valley;
    font-size: 2em;
    text-align: center;
-   /* background-color: #fefefe; */
-   background-color: #FFD29E;
+   background-color: #DDA67C;
    border: #8C4132;
    border-width: 10px;
    border-radius: 10px;
