@@ -35,10 +35,10 @@ class GameScene extends Phaser.Scene
         
         let eatingArray = [
             "(3) Make a vegan meal for lunch or dinner.",
-            "(3) Make a meal with seasonal food items",
+            "(3) Make a meal with seasonal food items.",
             "(5) Maintain a compost bin to collect food waste for one week.",
-            "(3) Buy food from a local farmer’s market",
-            "(5) Plant fruits or vegetables in an at-home garden",
+            "(3) Buy food from a local farmer’s market.",
+            "(5) Plant fruits or vegetables in an at-home garden.",
             "(3) Make a meal plan for the week.",
             "(1) Research companies that sell whole, sustainable food.",
             "(1) Read a blog about sustainable food.",
@@ -135,14 +135,6 @@ class GameScene extends Phaser.Scene
             corresponding_button.on('pointerout', () => corresponding_button.setTint(0xffffff));
             customButtons.push(corresponding_button);
         }
-
-        let hungerLevel = 50;
-        let happyLevel = 50;
-        let energyLevel = 50;
-
-        let foods = 1;
-        let toys = 1;
-        let energy = 1;
 
         this.add.text(925, 50, "Tasks", {
             fontFamily: 'Stardew_Valley',
@@ -256,12 +248,20 @@ class GameScene extends Phaser.Scene
             }
         }
 
+        this.hunger_level = 50;
+        this.happy_level = 50;
+        this.energy_level = 50;
+
+        let foods = 1;
+        let toys = 1;
+        let energy = 1;
+
         function eat() {
-            if (hungerLevel <= 40) {
-                hungerLevel += 10;
+            if (this.hunger_level <= 40) {
+                this.hunger_level += 10;
                 foods--;
-            } else if (hungerLevel < 50){
-                hungerLevel = 50;
+            } else if (this.hunger_level < 50){
+                this.hunger_level = 50;
                 foods--;
             } else {
                 alert("I'm not hungry!");
@@ -269,11 +269,11 @@ class GameScene extends Phaser.Scene
         }
 
         function play() {
-            if (happyLevel <= 40) {
-                happyLevel += 10;
+            if (this.happy_level <= 40) {
+                this.happy_level += 10;
                 toys--;
-            } else if (happyLevel < 50) {
-                happyLevel = 50;
+            } else if (this.happy_level < 50) {
+                this.happy_level = 50;
                 toys--;
             } else {
                 alert("I don't need to play right now!");
@@ -281,11 +281,11 @@ class GameScene extends Phaser.Scene
         }
 
         function rest() {
-            if (energyLevel <= 40) {
-                energyLevel += 10;
+            if (this.energy_level <= 40) {
+                this.energy_level += 10;
                 energy--;
-            } else if (energyLevel < 50) {
-                energyLevel = 50;
+            } else if (this.energy_level < 50) {
+                this.energy_level = 50;
                 energy--;
             } else {
                 alert("I'm not tired!");
@@ -320,6 +320,11 @@ class GameScene extends Phaser.Scene
         
         this.food_button = this.add.image(120, 500, 'button').setScale(10);
         this.add.image(120, 500, 'food').setScale(0.2);
+        this.food_button.setInteractive();
+        if (foods <= 0) {
+            this.food_button.on('pointerover', () => this.food_button.setStyle({fill : '#ffffff'}));
+            this.food_button.on('pointerout', () => this.food_button.setStyle({fill : '#5f3b39'}));
+        }
 
         this.toy_button = this.add.image(320, 500, 'button').setScale(10);
         this.add.image(320, 500, 'toy').setScale(0.14);
