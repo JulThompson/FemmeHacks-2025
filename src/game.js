@@ -5,23 +5,22 @@ class GameScene extends Phaser.Scene
     }
 
     preload () {
-        this.load.image('battle_background', 'assets/images/tes.png');
+        this.load.image('background', 'assets/images/tes.png');
         this.load.spritesheet('raccoon_1_idle', 'assets/sprites/raccoon-1/idle.png', { frameWidth: 174, frameHeight: 162 });
     }
 
     create () {
-        // Add background image
-        this.add.image(0, 0, 'background').setOrigin(0, 0);
+    // Add background image
+    this.add.image(0, 0, 'background').setOrigin(0, 0);
 
-        // Create green rectangles
-        const graphics = this.add.graphics({ fillStyle: { color: 0x00ff00 } });
+    // Create green rectangles
+    const graphics = this.add.graphics({ fillStyle: { color: 0x00ff00 } });
 
         // Left side rectangles
-        const rectWidth = 100;
-        const rectHeight = (this.sys.game.config.height - 20) / 2;
+        const rectWidth = (this.sys.game.config.width - 40) / 2;;
+        const rectHeight = (this.sys.game.config.height - 40) / 2;
 
-        graphics.fillRect(20, 20, rectWidth, rectHeight);
-        graphics.fillRect(20, rectHeight + 40, rectWidth, rectHeight);
+    graphics.fillRect(20, rectHeight + 40, rectWidth, rectHeight);
 
         // Right side rectangle
         const rightRectWidth = this.sys.game.config.width - rectWidth - 60;
