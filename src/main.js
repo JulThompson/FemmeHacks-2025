@@ -3,7 +3,7 @@ import EndingScene from './ending.js'
 
 const config = {
     type: Phaser.AUTO,
-    width: 1200,
+    width: 1300,
     height: 660,
     backgroundColor: '#000000',
     pixelArt: true,
