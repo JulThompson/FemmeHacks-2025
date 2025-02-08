@@ -14,6 +14,8 @@ class GameScene extends Phaser.Scene
         this.load.image('inventory', 'assets/images/inventory-board.webp');
         this.load.image('unfinished_icon', 'assets/images/unfinished-button.png');
         this.load.image('done_icon', 'assets/images/done-button.png');
+        this.load.image('expand_icon', 'assets/images/expand-button.png');
+        this.load.image('collapse_icon', 'assets/images/collapse-button.png');
 
         this.load.image('food', 'assets/images/apple.png');
         this.load.image('toy', 'assets/images/toy.png');
@@ -44,20 +46,20 @@ class GameScene extends Phaser.Scene
 
 
         let eatingArray = [
-            "(3) Make a vegan meal for lunch or dinner.",
-            "(3) Make a meal with seasonal food items.",
             "(5) Maintain a compost bin to collect food waste for one week.",
-            "(3) Buy food from a local farmer’s market.",
-            "(5) Plant fruits or vegetables in an at-home garden.",
+            "(5) Plant fruits or vegetables in an at-home garden",
+            "(5) Compile a list of plant-based and sustainable recipes.",
+            "(3) Make a vegan meal for lunch or dinner.",
+            "(3) Make a meal with seasonal food items",
+            "(3) Buy food from a local farmer’s market",
             "(3) Make a meal plan for the week.",
+            "(3) Make a meal with leftovers.",
             "(1) Research companies that sell whole, sustainable food.",
             "(1) Read a blog about sustainable food.",
             "(1) Try a new meat alternative.",
-            "(1) Freeze extra food for a later meal.",
-            "(3) Make a meal with leftovers.",
-            "(5) Compile a list of plant-based and sustainable recipes."
+            "(1) Freeze extra food for a later meal."
         ];
-        let eatingPoints = [3, 3, 5, 3, 5, 3, 1, 1, 1, 1, 3, 5];
+        let eatingPoints = [5, 5, 5, 3, 3, 3, 3, 3, 1, 1, 1, 1];
         let eatingElements = [];
         let eatingButtons = [];
         for (let i = 0; i < eatingArray.length; i++) {
@@ -84,16 +86,16 @@ class GameScene extends Phaser.Scene
         }
 
         let reduceArray = [
+            "(5) Buy a new energy efficient appliance.",
+            "(3) Ride a bike to your destination.",
+            "(3) Shop at a second-hand store.",
+            "(3) Donate old clothing.",
             "(1) Use a reusable water bottle.",
             "(1) Bring a reusable cup the next time you go to a café or coffee shop.",
             "(1) Use reusable bags on your trip to the grocery store.",
-            "(3) Ride a bike to your destination.",
-            "(1) Carpool with your friends.",
-            "(3) Shop at a second-hand store.",
-            "(5) Buy a new energy efficient appliance.",
-            "(3) Donate old clothing."
+            "(1) Carpool with your friends."
         ];
-        let reducePoints = [1, 1, 1, 3, 1, 3, 5, 3];
+        let reducePoints = [5, 3, 3, 3, 1, 1, 1, 1];
         let reduceElements = [];
         let reduceButtons = [];
         for (let i = 0; i < reduceArray.length; i++) {
@@ -119,18 +121,30 @@ class GameScene extends Phaser.Scene
             reduceButtons.push(corresponding_button);
         }
 
-        let customArray = ["test", "test2", "test3"];
-        let customPoints = [];
-        let customElements = [];
-        let customButtons = [];
-        for (let i = 0; i < customArray.length; i++) {
-            let element = this.add.text(725, 210 + (22*i), customArray[i], {
+        let recycleArray = [
+            "(5) Organize a recycling drive in your community.",
+            "(5) Recycle an old home appliance.",
+            "(3) Make a bag out of old clothes.",
+            "(3) Make a bird feeder out of a milk carton.",
+            "(3) Make a planter out a plastic bottle.",
+            "(3) Sort through old paper products to shred or recycle",
+            "(1) Make a craft out of recycled bottles.",
+            "(1) Bring old cans to a recycling center.",
+            "(1) Recycle old batteries.",
+            "(1) Repurpose old jars.",
+            "(1) Collect five bottle caps to recycle."
+        ];
+        let recyclePoints = [5, 5, 3, 3, 3, 3, 1, 1, 1, 1, 1];
+        let recycleElements = [];
+        let recycleButtons = [];
+        for (let i = 0; i < recycleArray.length; i++) {
+            let element = this.add.text(725, 210 + (22*i), recycleArray[i], {
                 fontFamily: 'Stardew_Valley',
                 fontSize: '20px',
-                color: 'orange'
+                color: '#ed9705'
             });
             element.visible = false;
-            customElements.push(element);
+            recycleElements.push(element);
 
             let corresponding_button = this.add.image(700, 220 + (22*i), 'unfinished_icon').setScale(0.7);
             corresponding_button.visible = false;
@@ -143,7 +157,7 @@ class GameScene extends Phaser.Scene
             });
             corresponding_button.on('pointerover', () => corresponding_button.setTint(0xcccccc));
             corresponding_button.on('pointerout', () => corresponding_button.setTint(0xffffff));
-            customButtons.push(corresponding_button);
+            recycleButtons.push(corresponding_button);
         }
 
         this.add.text(925, 50, "Tasks", {
@@ -152,7 +166,12 @@ class GameScene extends Phaser.Scene
             color: 'black',
         })
        
-        let eatingHeader = this.add.text(700, 90, "\u{1F783} Sustainable Eating: Food", {
+        let eatingCategoryButton = this.add.image(700, 103, 'collapse_icon');
+            eatingCategoryButton.setInteractive();
+            eatingCategoryButton.on('pointerdown', () => {
+                displayEatingTasks();
+            });
+        let eatingHeader = this.add.text(720, 90, "Sustainable Eating: Food", {
             fontFamily: 'Stardew_Valley',
             fontSize: '25px',
             color: 'black'
@@ -160,7 +179,12 @@ class GameScene extends Phaser.Scene
         .setInteractive({ useHandCursor: true })
         .on('pointerdown', displayEatingTasks);
         
-        let reduceHeader = this.add.text(700, 400, "\u{1F783} Reduce Waste: Toys", {
+        let reduceCategoryButton = this.add.image(700, 413, 'expand_icon');
+            reduceCategoryButton.setInteractive();
+            reduceCategoryButton.on('pointerdown', () => {
+                displayReduceTasks();
+            });
+        let reduceHeader = this.add.text(720, 400, "Reduce Waste: Toys", {
             fontFamily: 'Stardew_Valley',
             fontSize: '25px',
             color: 'black'
@@ -168,13 +192,18 @@ class GameScene extends Phaser.Scene
         .setInteractive({ useHandCursor: true })
         .on('pointerdown', displayReduceTasks);
 
-        let customHeader = this.add.text(700, 440, "\u{1F783} Custom Tasks", {
+        let recycleCategoryButton = this.add.image(700, 453, 'expand_icon');
+            recycleCategoryButton.setInteractive();
+            recycleCategoryButton.on('pointerdown', () => {
+                displayCustomTasks();
+            });
+        let recycleHeader = this.add.text(720, 440, "Recycling Tasks", {
             fontFamily: 'Stardew_Valley',
             fontSize: '25px',
             color: 'black'
         })
         .setInteractive({ useHandCursor: true })
-        .on('pointerdown', displayCustomTasks);
+        .on('pointerdown', displayrecycleTasks);
 
         function displayEatingTasks() {
             console.log("hit");
@@ -183,14 +212,22 @@ class GameScene extends Phaser.Scene
                     eatingElements[i].visible = false;
                     eatingButtons[i].setInteractive(false);
                     eatingButtons[i].visible = false;
+                    eatingCategoryButton.setTexture('expand_icon');
+                    reduceCategoryButton.y = 145
                     reduceHeader.y = 130;
-                    customHeader.y = 170;
+                    recycleCategoryButton.y = 185;
+                    recycleHeader.y = 170;
                 } else {
                     eatingElements[i].visible = true;
                     eatingButtons[i].setInteractive(true);
                     eatingButtons[i].visible = true;
+                    eatingCategoryButton.setTexture('collapse_icon');
+                    reduceCategoryButton.y = 415;
                     reduceHeader.y = 400;
-                    customHeader.y = 440;
+                    recycleCategoryButton.y = 455;
+                    recycleHeader.y = 440;
+                    reduceCategoryButton.setTexture('expand_icon');
+                    recycleCategoryButton.setTexture('expand_icon');
                 }
             }
             for (let i = 0; i < reduceElements.length; i++) {
@@ -198,10 +235,10 @@ class GameScene extends Phaser.Scene
                 reduceButtons[i].setInteractive(false);
                 reduceButtons[i].visible = false;
             }
-            for (let i = 0; i < customElements.length; i++) {
-                customElements[i].visible = false;
-                customButtons[i].setInteractive(false);
-                customButtons[i].visible = false;
+            for (let i = 0; i < recycleElements.length; i++) {
+                recycleElements[i].visible = false;
+                recycleButtons[i].setInteractive(false);
+                recycleButtons[i].visible = false;
             }
         }
 
@@ -211,13 +248,20 @@ class GameScene extends Phaser.Scene
                     reduceElements[i].visible = false;
                     reduceButtons[i].setInteractive(false);
                     reduceButtons[i].visible = false;
-                    customHeader.y = 170;
+                    reduceCategoryButton.setTexture('expand_icon');
+                    recycleCategoryButton.y = 185;
+                    recycleHeader.y = 170;
                 } else {
                     reduceElements[i].visible = true;
                     reduceButtons[i].setInteractive(true);
                     reduceButtons[i].visible = true;
-                    customHeader.y = 360;
+                    reduceCategoryButton.setTexture('collapse_icon');
+                    recycleCategoryButton.y = 375;
+                    recycleHeader.y = 360;
+                    reduceCategoryButton.y = 145
                     reduceHeader.y = 130;
+                    eatingCategoryButton.setTexture('expand_icon');
+                    recycleCategoryButton.setTexture('expand_icon');
                 }
             }
             for (let i = 0; i < eatingElements.length; i++) {
@@ -225,25 +269,31 @@ class GameScene extends Phaser.Scene
                 eatingButtons[i].setInteractive(false);
                 eatingButtons[i].visible = false;
             }
-            for (let i = 0; i < customElements.length; i++) {
-                customElements[i].visible = false;
-                customButtons[i].setInteractive(false);
-                customButtons[i].visible = false;
+            for (let i = 0; i < recycleElements.length; i++) {
+                recycleElements[i].visible = false;
+                recycleButtons[i].setInteractive(false);
+                recycleButtons[i].visible = false;
             }
         }
 
-        function displayCustomTasks() {
-            for (let i = 0; i < customElements.length; i++) {
-                if (customElements[i].visible) {
-                    customElements[i].visible = false;
-                    customButtons[i].setInteractive(false);
-                    customButtons[i].visible = false;
+        function displayrecycleTasks() {
+            for (let i = 0; i < recycleElements.length; i++) {
+                if (recycleElements[i].visible) {
+                    recycleElements[i].visible = false;
+                    recycleButtons[i].setInteractive(false);
+                    recycleButtons[i].visible = false;
+                    recycleCategoryButton.setTexture('expand_icon');
                 } else {
-                    customElements[i].visible = true;
-                    customButtons[i].setInteractive(true);
-                    customButtons[i].visible = true;
+                    recycleElements[i].visible = true;
+                    recycleButtons[i].setInteractive(true);
+                    recycleButtons[i].visible = true;
+                    recycleCategoryButton.setTexture('collapse_icon');
+                    reduceCategoryButton.y = 145;
                     reduceHeader.y = 130;
-                    customHeader.y = 170;
+                    recycleCategoryButton.y = 185;
+                    recycleHeader.y = 170;
+                    eatingCategoryButton.setTexture('expand_icon');
+                    reduceCategoryButton.setTexture('expand_icon');
                 }
             }
             for (let i = 0; i < eatingElements.length; i++) {
@@ -306,14 +356,14 @@ class GameScene extends Phaser.Scene
         }
 
         function addTask(task, points) {
-            customArray.push(task);
-            customPoints.push(points);
-            let element = this.add.text(725, 200 + (22*customArray.length), task, {
+            recycleArray.push(task);
+            recyclePoints.push(points);
+            let element = this.add.text(725, 200 + (22*recycleArray.length), task, {
                 fontFamily: 'Stardew_Valley',
                 color: 'black'
             });
             element.visible = false;
-            customElements.push(element);
+            recycleElements.push(element);
         }
 
         function addFood(task) {
@@ -327,8 +377,8 @@ class GameScene extends Phaser.Scene
         }
 
         function addEnergy(task) {
-            let index = customArray.indexOf(task);
-            energy += customPoints[index];
+            let index = recycleArray.indexOf(task);
+            energy += recyclePoints[index];
         }
         
         this.food_button = this.add.image(120, 500, 'button').setScale(10);
@@ -445,7 +495,13 @@ class GameScene extends Phaser.Scene
     }
 
     update () {
-        this.raccoon_1.anims.play('raccoon_1_idle_happy', true);
+        if (this.hunger_level <= 0 || this.happy_level <= 0 || this.energy_level <= 0) {
+            this.raccoon_1.anims.play('raccoon_1_idle_happy', false);
+            this.raccoon_1.anims.play('raccoon_1_panic', true);
+        } else if (Math.random() < 0.01) {
+            this.raccoon_1.anims.play('raccoon_1_panic', false);
+            this.raccoon_1.anims.play('raccoon_1_idle_happy', true);
+        }
     }
 }
 
