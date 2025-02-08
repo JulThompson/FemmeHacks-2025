@@ -41,6 +41,8 @@ class GameScene extends Phaser.Scene
         this.add.image(320, 230, 'home_board').setScale(16);
         this.add.image(320, 230, 'raccoon_background').setScale(0.85);
         
+
+
         let eatingArray = [
             "(5) Maintain a compost bin to collect food waste for one week.",
             "(5) Plant fruits or vegetables in an at-home garden",
@@ -156,14 +158,6 @@ class GameScene extends Phaser.Scene
             recycleButtons.push(corresponding_button);
         }
 
-        let hungerLevel = 50;
-        let happyLevel = 50;
-        let energyLevel = 50;
-
-        let foods = 1;
-        let toys = 1;
-        let energy = 1;
-
         this.add.text(925, 50, "Tasks", {
             fontFamily: 'Stardew_Valley',
             fontSize: '35px',
@@ -276,12 +270,23 @@ class GameScene extends Phaser.Scene
             }
         }
 
+
+
+
+        this.hunger_level = 50;
+        this.happy_level = 50;
+        this.energy_level = 50;
+
+        let foods = 1;
+        let toys = 1;
+        let energy = 1;
+
         function eat() {
-            if (hungerLevel <= 40) {
-                hungerLevel += 10;
+            if (this.hunger_level <= 40) {
+                this.hunger_level += 10;
                 foods--;
-            } else if (hungerLevel < 50){
-                hungerLevel = 50;
+            } else if (this.hunger_level < 50){
+                this.hunger_level = 50;
                 foods--;
             } else {
                 alert("I'm not hungry!");
@@ -289,11 +294,11 @@ class GameScene extends Phaser.Scene
         }
 
         function play() {
-            if (happyLevel <= 40) {
-                happyLevel += 10;
+            if (this.happy_level <= 40) {
+                this.happy_level += 10;
                 toys--;
-            } else if (happyLevel < 50) {
-                happyLevel = 50;
+            } else if (this.happy_level < 50) {
+                this.happy_level = 50;
                 toys--;
             } else {
                 alert("I don't need to play right now!");
@@ -301,11 +306,11 @@ class GameScene extends Phaser.Scene
         }
 
         function rest() {
-            if (energyLevel <= 40) {
-                energyLevel += 10;
+            if (this.energy_level <= 40) {
+                this.energy_level += 10;
                 energy--;
-            } else if (energyLevel < 50) {
-                energyLevel = 50;
+            } else if (this.energy_level < 50) {
+                this.energy_level = 50;
                 energy--;
             } else {
                 alert("I'm not tired!");
@@ -340,6 +345,11 @@ class GameScene extends Phaser.Scene
         
         this.food_button = this.add.image(120, 500, 'button').setScale(10);
         this.add.image(120, 500, 'food').setScale(0.2);
+        this.food_button.setInteractive();
+        if (foods <= 0) {
+            this.food_button.on('pointerover', () => this.food_button.setStyle({fill : '#ffffff'}));
+            this.food_button.on('pointerout', () => this.food_button.setStyle({fill : '#5f3b39'}));
+        }
 
         this.toy_button = this.add.image(320, 500, 'button').setScale(10);
         this.add.image(320, 500, 'toy').setScale(0.14);
@@ -361,15 +371,16 @@ class GameScene extends Phaser.Scene
         this.add.image(480, 80, 'stat_bar').setScale(2.7);
 
         this.food_bar = this.add.sprite(160, 81, 'food_bar').setScale(2.62);
+        this.add.text(100, 100, 'Hunger', {fontFamily: 'Stardew_Valley', fill : '#000000'}).setScale(1.8);
+
         this.toy_bar = this.add.sprite(320, 81, 'toy_bar').setScale(2.62);
+        this.add.text(260, 100, 'Happiness', {fontFamily: 'Stardew_Valley', fill : '#000000'}).setScale(1.8);
+
         this.energy_bar = this.add.sprite(480, 81, 'energy_bar').setScale(2.62);
+        this.add.text(420, 100, 'Energy', {fontFamily: 'Stardew_Valley', fill : '#000000'}).setScale(1.8);
         
-        // this.anims.create({
-        //     key: 'raccoon_1_idle',
-        //     frames: this.anims.generateFrameNumbers('raccoon_1_idle', { start: 0, end: 4 }),
-        //     frameRate: 7,
-        //     repeat: -1
-        // });
+
+
         this.anims.create({
             key: 'raccoon_1_dance',
             frames: this.anims.generateFrameNumbers('raccoon_1_dance', { start: 0, end: 5 }),
@@ -406,12 +417,10 @@ class GameScene extends Phaser.Scene
             frameRate: 7,
         })
 
-        // this.raccoon_1 = this.add.sprite(310, 290, 'raccoon_1_idle').setScale(3);
-        this.raccoon_1 = this.add.sprite(310, 290, 'raccoon_1_idle_happy')
+        this.raccoon_1 = this.add.sprite(310, 290, 'raccoon_1_idle_happy').setScale(0.6)
     }
 
     update () {
-        // this.raccoon_1.anims.play('raccoon_1_idle', true);
         this.raccoon_1.anims.play('raccoon_1_idle_happy', true);
     }
 }
