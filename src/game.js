@@ -359,16 +359,52 @@ class GameScene extends Phaser.Scene
         this.add.image(480, 80, 'stat_bar').setScale(2.7);
 
         this.food_bar = this.add.sprite(160, 81, 'food_bar').setScale(2.62);
+        this.food_bar_width = this.food_bar.width;
+        this.time.addEvent({
+            delay: 90000,
+            callback: function () {
+                this.food_bar_width *= 0.95;
+                if (this.food_bar_width > 0) {
+                    this.food_bar.setCrop(0, 0, this.food_bar_width, 5);
+                }
+            },
+            callbackScope: this,
+            loop: true
+        });
         this.add.text(100, 100, 'Hunger', {fontFamily: 'Stardew_Valley', fill : '#000000'}).setScale(1.8);
 
         this.toy_bar = this.add.sprite(320, 81, 'toy_bar').setScale(2.62);
+        this.toy_bar_width = this.toy_bar.width;
+        this.time.addEvent({
+            delay: 30000,
+            callback: function () {
+                this.toy_bar_width *= 0.95;
+                if (this.toy_bar_width > 0) {
+                    this.toy_bar.setCrop(0, 0, this.toy_bar_width, 5);
+                }
+            },
+            callbackScope: this,
+            loop: true
+        });
         this.add.text(260, 100, 'Happiness', {fontFamily: 'Stardew_Valley', fill : '#000000'}).setScale(1.8);
 
         this.energy_bar = this.add.sprite(480, 81, 'energy_bar').setScale(2.62);
+        this.energy_bar_width = this.energy_bar.width;
+        this.time.addEvent({
+            delay: 1200000,
+            callback: function () {
+                this.energy_bar_width *= 0.95;
+                if (this.energy_bar_width > 0) {
+                    this.energy_bar.setCrop(0, 0, this.energy_bar_width, 5);
+                }
+            },
+            callbackScope: this,
+            loop: true
+        });
         this.add.text(420, 100, 'Energy', {fontFamily: 'Stardew_Valley', fill : '#000000'}).setScale(1.8);
         
 
-
+        
         this.anims.create({
             key: 'raccoon_1_dance',
             frames: this.anims.generateFrameNumbers('raccoon_1_dance', { start: 0, end: 5 }),
