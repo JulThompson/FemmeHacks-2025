@@ -1,95 +1,107 @@
 @font-face {
-    font-family: Stardew_Valley;
-    src: url('../css/Stardew_Valley.ttf');
- }
+   font-family: Stardew_Valley;
+   src: url('../css/Stardew_Valley.ttf');
+}
 
- body {
-    background-color: #CAD2C5;
- }
-  
- h1 {
-    font-family: myFont;
-    text-align: center;
-    font-size: 15vh;
-    margin-bottom:5vh;
-    color: #354F52;
- }
+body {
+   /* background-color: #CAD2C5; */
+   background-image: url('../images/grass-background.webp');
+   background-size: cover;
+}
 
- img {
-    display: block;
-    margin: auto;
-    padding-bottom: 5vh;
-    width: 23vw;
-    height: 40vh;
- }
+.container {
+   margin: 20vh auto;
+   width: 80vw;
+   grid-template-columns: auto auto auto;
+   display: grid;
+}
 
- button {
-    font-family: myFont;
-    font-size: 2em;
-    padding-bottom: 10px;
-    margin: auto auto 3vh;
-    display: block;
-    justify-content: center;
-    height: 6vh;
-    width: 20vw;
-    background-color: #52796F;
-    /* background-color: #DDA67C;
-    border: #8C4132; */
-    /* background-image: url("../images/homeboard.png"); */
-    border-width: 4px;
-    border-radius: 5px;
-    border-style: inset;
-    border: #354F52;
- }
+h1 {
+   font-family: Stardew_Valley;
+   text-align: center;
+   font-size: 15vh;
+   margin-bottom: 5vh;
+   color: #354F52;
+}
 
- button:hover {
-    background-color: #354F52;
-    border: #52796F;
- }
+img {
+   display: block;
+   margin: 20vh auto;
+   padding-bottom: 5vh;
+   width: 15vw;
+   height: 35vh;
+}
 
- .popup {
-    display: none;
-    position: fixed;
-    z-index: 1;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    /* overflow: auto; */
-    background-color: rgba(0,0,0,0.4);
-  }
-  
-  .popup-content {
-    font-family: myFont;
-    font-size: 2em;
-    text-align: center;
-    background-color: #fefefe;
-    margin: 10% auto;
-    padding: 20px;
-    border: 1px solid #888;
-    border-radius: 10px;
-    width: 80%;
-    height: 60%;
-  }
+button {
+   font-family: Stardew_Valley;
+   font-size: 2em;
+   padding-bottom: 10px;
+   margin: auto auto 3vh;
+   display: block;
+   justify-content: center;
+   height: 6vh;
+   width: 20vw;
+   /* background-color: #52796F; */
+   background-color: #FFD29E;
+   border: #8C4132;
+   /* background-image: url("../images/homeboard.png"); */
+   border-width: 4px;
+   border-radius: 5px;
+   border-style: inset;
+   /* border: #354F52; */
+}
 
-  h2 {
-    margin-top: 2px;
-  }
+button:hover {
+   background-color: #DDA67C;
+}
 
-  p {
-    margin: 2vw;
-  }
-  
-  .closeBtn {
-    color: #aaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-  }
-  
-  .closeBtn:hover,
-  .closeBtn:focus {
-    color: black;
-    text-decoration: none;
-    cursor: pointer;
-  }
+.popup {
+   display: none;
+   position: fixed;
+   z-index: 1;
+   left: 0;
+   top: 0;
+   width: 100%;
+   height: 100%;
+   /* overflow: auto; */
+   background-color: rgba(0, 0, 0, 0.4);
+}
+
+.popup-content {
+   font-family: Stardew_Valley;
+   font-size: 2em;
+   text-align: center;
+   /* background-color: #fefefe; */
+   background-color: #FFD29E;
+   border: #8C4132;
+   border-width: 10px;
+   border-radius: 10px;
+   border-style: inset;
+   margin: 10% auto;
+   padding: 20px;
+   border: 1px solid #888;
+   width: 80%;
+   height: 60%;
+}
+
+h2 {
+   margin-top: 2px;
+}
+
+p {
+   margin: 2vw;
+}
+
+.closeBtn {
+   color: #8C4132;
+   float: right;
+   font-size: 28px;
+   font-weight: bold;
+}
+
+.closeBtn:hover,
+.closeBtn:focus {
+   color: black;
+   text-decoration: none;
+   cursor: pointer;
+}
