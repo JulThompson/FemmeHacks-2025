@@ -1,4 +1,3 @@
-// import StartScene from './start.js'
 import GameScene from './game.js'
 import EndingScene from './ending.js'
 
