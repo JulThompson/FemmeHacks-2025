@@ -5,7 +5,7 @@ import EndingScene from './ending.js'
 const config = {
     type: Phaser.AUTO,
     width: 1300,
-    height: 660,
+    height: 640,
     backgroundColor: '#000000',
     pixelArt: true,
     parent: 'game',
