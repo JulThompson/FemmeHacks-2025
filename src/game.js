@@ -211,7 +211,7 @@ class GameScene extends Phaser.Scene
         let recycleCategoryButton = this.add.image(700, 453, 'expand_icon');
             recycleCategoryButton.setInteractive();
             recycleCategoryButton.on('pointerdown', () => {
-                displayCustomTasks();
+                displayrecycleTasks();
             });
         let recycleHeader = this.add.text(720, 440, "Recycling Tasks", {
             fontFamily: 'Stardew_Valley',
