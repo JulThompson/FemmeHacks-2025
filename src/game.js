@@ -17,8 +17,8 @@ class GameScene extends Phaser.Scene
 
     create () {
         this.add.image(0, 0, 'grass_background').setOrigin(0, 0).setScale(2.2);
-        this.physics.add.image(975, 320, 'taskboard').setScale(13.7);
-        this.add.image(385, 230, 'homeboard').setScale(16.5);
+        this.physics.add.image(880, 315, 'taskboard').setScale(10);
+        this.add.image(320, 230, 'homeboard').setScale(16);
         
         this.food_button = this.physics.add.image(275, 525, 'button').setScale(10);
         
