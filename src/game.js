@@ -82,7 +82,7 @@ class GameScene extends Phaser.Scene
                 corresponding_button.setTexture('done_icon');
                 if (this.eatingCompleted[i] == 0) {
                     this.taskCount++;
-                    this.taskCounterText.setText(this.taskCount + ' Distinct Sustainability Task(s) Completed');
+                    this.taskCounterText.setText(this.taskCount + '/31 Distinct Sustainability Task(s) Completed');
                 }
                 this.eatingCompleted[i] += 1;
                 if (eatingPoints[i] >= 5) {
@@ -132,7 +132,7 @@ class GameScene extends Phaser.Scene
                 corresponding_button.setTexture('done_icon');
                 if (this.reduceCompleted[i] == 0) {
                     this.taskCount++;
-                    this.taskCounterText.setText(this.taskCount + ' Distinct Sustainability Task(s) Completed');
+                    this.taskCounterText.setText(this.taskCount + '/31 Distinct Sustainability Task(s) Completed');
                 }
                 this.reduceCompleted[i] += 1;
                 if (recyclePoints[i] >= 5) {
@@ -185,7 +185,7 @@ class GameScene extends Phaser.Scene
                 corresponding_button.setTexture('done_icon');
                 if (this.recycleCompleted[i] == 0) {
                     this.taskCount++;
-                    this.taskCounterText.setText(this.taskCount + ' Distinct Sustainability Task(s) Completed');
+                    this.taskCounterText.setText(this.taskCount + '/31 Distinct Sustainability Task(s) Completed');
                 }
                 this.recycleCompleted[i] += 1;
                 if (recyclePoints[i] >= 5) {
@@ -205,14 +205,14 @@ class GameScene extends Phaser.Scene
             recycleButtons.push(corresponding_button);
         }
 
-        this.add.text(925, 50, "Tasks", {
+        this.add.text(930, 50, "Tasks", {
             fontFamily: 'Stardew_Valley',
             fontSize: '35px',
             color: 'black',
         })
 
         this.taskCount = 0;
-        this.taskCounterText = this.add.text(785, 530, "Make Trash Panda Happy with Tasks!", {
+        this.taskCounterText = this.add.text(783, 530, "Make Trash Panda Happy with Tasks!", {
             fontFamily: 'Stardew_Valley',
             fontSize: '25px',
             color: 'black'
@@ -249,7 +249,7 @@ class GameScene extends Phaser.Scene
             recycleCategoryButton.on('pointerdown', () => {
                 displayrecycleTasks();
             });
-        let recycleHeader = this.add.text(720, 440, "Recycling Tasks", {
+        let recycleHeader = this.add.text(720, 440, "Recycling Tasks: Energy", {
             fontFamily: 'Stardew_Valley',
             fontSize: '25px',
             color: 'black'
@@ -459,7 +459,6 @@ class GameScene extends Phaser.Scene
                     this.received_food = true;
                 } else {
                     this.food_bar_width = this.food_bar_max_width;
-                    alert("I'm not hungry!");
                 }
 
                 foods--;
@@ -486,7 +485,6 @@ class GameScene extends Phaser.Scene
                     this.received_toy = true;
                 } else {
                     this.toy_bar_width = this.toy_bar_max_width;
-                    alert("I don't need to play right now!");
                 }
 
                 toys--;
@@ -513,7 +511,6 @@ class GameScene extends Phaser.Scene
                     this.received_energy = true;
                 } else {
                     this.energy_bar_width = this.energy_bar_max_width;
-                    alert("I'm not tired!");
                 }
 
                 energy--;
