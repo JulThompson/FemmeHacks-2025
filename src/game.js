@@ -65,6 +65,7 @@ class GameScene extends Phaser.Scene
         let eatingPoints = [5, 5, 5, 3, 3, 3, 3, 3, 1, 1, 1, 1];
         let eatingElements = [];
         let eatingButtons = [];
+        this.eatingCompleted = Array(eatingPoints.length).fill(0);
         for (let i = 0; i < eatingArray.length; i++) {
             let element = this.add.text(725, 120 + (22*i), eatingArray[i], {
                 fontFamily: 'Stardew_Valley',
@@ -79,6 +80,7 @@ class GameScene extends Phaser.Scene
             corresponding_button.setInteractive();
             corresponding_button.on('pointerdown', () => {
                 corresponding_button.setTexture('done_icon');
+                this.eatingCompleted[i] += 1;
                 if (eatingPoints[i] >= 5) {
                     this.raccoon_1.anims.play('raccoon_1_dance', false);
                 }
@@ -109,6 +111,7 @@ class GameScene extends Phaser.Scene
         let reducePoints = [5, 3, 3, 3, 1, 1, 1, 1];
         let reduceElements = [];
         let reduceButtons = [];
+        this.reduceCompleted = Array(reducePoints.length).fill(0);
         for (let i = 0; i < reduceArray.length; i++) {
             let element = this.add.text(725, 170 + (22*i), reduceArray[i], {
                 fontFamily: 'Stardew_Valley',
@@ -123,6 +126,7 @@ class GameScene extends Phaser.Scene
             corresponding_button.setInteractive();
             corresponding_button.on('pointerdown', () => {
                 corresponding_button.setTexture('done_icon');
+                this.reduceCompleted[i] += 1;
                 if (recyclePoints[i] >= 5) {
                     this.raccoon_1.anims.play('raccoon_1_dance', false);
                 }
@@ -156,6 +160,7 @@ class GameScene extends Phaser.Scene
         let recyclePoints = [5, 5, 3, 3, 3, 3, 1, 1, 1, 1, 1];
         let recycleElements = [];
         let recycleButtons = [];
+        this.recycleCompleted = Array(recyclePoints.length).fill(0);
         for (let i = 0; i < recycleArray.length; i++) {
             let element = this.add.text(725, 210 + (22*i), recycleArray[i], {
                 fontFamily: 'Stardew_Valley',
@@ -170,6 +175,7 @@ class GameScene extends Phaser.Scene
             corresponding_button.setInteractive();
             corresponding_button.on('pointerdown', () => {
                 corresponding_button.setTexture('done_icon');
+                this.recycleCompleted[i] = 1;
                 if (recyclePoints[i] >= 5) {
                     this.raccoon_1.anims.play('raccoon_1_dance', false);
                 }
@@ -535,6 +541,9 @@ class GameScene extends Phaser.Scene
     }
 
     update () {
+        if (!this.eatingCompleted.includes(0) && !this.reduceCompleted.includes(0) && !this.recycleCompleted.includes(0)) {
+            this.scene.start('EndingScene');
+        }
         if (this.food_bar_width <= 0.1 || this.toy_bar_width <= 0.1 || this.energy_bar_width <= 0.1) {
             this.raccoon_1.anims.play('raccoon_1_panic', true);
         } else if (Math.random() < 0.01) {
