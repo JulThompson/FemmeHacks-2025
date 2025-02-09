@@ -34,12 +34,12 @@ class GameScene extends Phaser.Scene
         this.load.spritesheet('raccoon_1_panic', 'assets/sprites/raccoon-1/panic.png', { frameWidth: 209, frameHeight: 198 });
         this.load.spritesheet('raccoon_1_turn', 'assets/sprites/raccoon-1/turn.png', { frameWidth: 301, frameHeight: 172 });
 
-        this.load.audio('backgroundMusic', 'assets/audio/cute-bossa-nova.wav');
+        //this.load.audio('backgroundMusic', 'assets/audio/cute-bossa-nova.wav');
     }
 
     create () {
-        let music = this.sound.add('backgroundMusic', { loop: true });
-        music.play();
+        // let music = this.sound.add('backgroundMusic', { loop: true });
+        // music.play();
         
         this.add.image(0, 0, 'grass_background').setOrigin(0, 0).setScale(2.2);
         this.add.image(883, 315, 'task_board').setScale(10);
