@@ -80,6 +80,10 @@ class GameScene extends Phaser.Scene
             corresponding_button.setInteractive();
             corresponding_button.on('pointerdown', () => {
                 corresponding_button.setTexture('done_icon');
+                if (this.eatingCompleted[i] == 0) {
+                    this.taskCount++;
+                    this.taskCounterText.setText(this.taskCount + ' Distinct Sustainability Task(s) Completed');
+                }
                 this.eatingCompleted[i] += 1;
                 if (eatingPoints[i] >= 5) {
                     this.raccoon_1.anims.play('raccoon_1_dance', false);
@@ -126,6 +130,10 @@ class GameScene extends Phaser.Scene
             corresponding_button.setInteractive();
             corresponding_button.on('pointerdown', () => {
                 corresponding_button.setTexture('done_icon');
+                if (this.reduceCompleted[i] == 0) {
+                    this.taskCount++;
+                    this.taskCounterText.setText(this.taskCount + ' Distinct Sustainability Task(s) Completed');
+                }
                 this.reduceCompleted[i] += 1;
                 if (recyclePoints[i] >= 5) {
                     this.raccoon_1.anims.play('raccoon_1_dance', false);
@@ -175,7 +183,11 @@ class GameScene extends Phaser.Scene
             corresponding_button.setInteractive();
             corresponding_button.on('pointerdown', () => {
                 corresponding_button.setTexture('done_icon');
-                this.recycleCompleted[i] = 1;
+                if (this.recycleCompleted[i] == 0) {
+                    this.taskCount++;
+                    this.taskCounterText.setText(this.taskCount + ' Distinct Sustainability Task(s) Completed');
+                }
+                this.recycleCompleted[i] += 1;
                 if (recyclePoints[i] >= 5) {
                     this.raccoon_1.anims.play('raccoon_1_dance', false);
                 }
@@ -197,6 +209,13 @@ class GameScene extends Phaser.Scene
             fontFamily: 'Stardew_Valley',
             fontSize: '35px',
             color: 'black',
+        })
+
+        this.taskCount = 0;
+        this.taskCounterText = this.add.text(785, 530, "Make Trash Panda Happy with Tasks!", {
+            fontFamily: 'Stardew_Valley',
+            fontSize: '25px',
+            color: 'black'
         })
        
         let eatingCategoryButton = this.add.image(700, 103, 'collapse_icon');
