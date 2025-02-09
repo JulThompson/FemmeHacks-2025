@@ -27,10 +27,10 @@ class GameScene extends Phaser.Scene
         this.load.image('energy_bar', 'assets/images/energy-bar.png');
 
         // this.load.spritesheet('raccoon_1_idle', 'assets/sprites/raccoon.png', { frameWidth: 32, frameHeight: 33 });
-        this.load.spritesheet('raccoon_1_dance', 'assets/sprites/raccoon-1/dance.png', { frameWidth: 227, frameHeight: 188 });
+        this.load.spritesheet('raccoon_1_dance', 'assets/sprites/raccoon-1/dance.png', { frameWidth: 270, frameHeight: 224 });
         this.load.spritesheet('raccoon_1_idle_happy', 'assets/sprites/raccoon-1/idle-happy.png', { frameWidth: 232, frameHeight: 224 });
         this.load.spritesheet('raccoon_1_idle', 'assets/sprites/raccoon-1/idle.png', { frameWidth: 176.5, frameHeight: 158 }); // he's wiggly :(
-        this.load.spritesheet('raccoon_1_jump', 'assets/sprites/raccoon-1/jump.png', { frameWidth: 145, frameHeight: 188 }); // also a bit rough
+        this.load.spritesheet('raccoon_1_jump', 'assets/sprites/raccoon-1/jump.png', { frameWidth: 175, frameHeight: 224 }); // also a bit rough
         this.load.spritesheet('raccoon_1_panic', 'assets/sprites/raccoon-1/panic.png', { frameWidth: 209, frameHeight: 198 });
         this.load.spritesheet('raccoon_1_turn', 'assets/sprites/raccoon-1/turn.png', { frameWidth: 301, frameHeight: 172 });
 
@@ -65,6 +65,7 @@ class GameScene extends Phaser.Scene
         let eatingPoints = [5, 5, 5, 3, 3, 3, 3, 3, 1, 1, 1, 1];
         let eatingElements = [];
         let eatingButtons = [];
+        this.eatingCompleted = Array(eatingPoints.length).fill(0);
         for (let i = 0; i < eatingArray.length; i++) {
             let element = this.add.text(725, 120 + (22*i), eatingArray[i], {
                 fontFamily: 'Stardew_Valley',
@@ -79,6 +80,7 @@ class GameScene extends Phaser.Scene
             corresponding_button.setInteractive();
             corresponding_button.on('pointerdown', () => {
                 corresponding_button.setTexture('done_icon');
+                this.eatingCompleted[i] += 1;
                 if (eatingPoints[i] >= 5) {
                     this.raccoon_1.anims.play('raccoon_1_dance', false);
                 }
@@ -109,6 +111,7 @@ class GameScene extends Phaser.Scene
         let reducePoints = [5, 3, 3, 3, 1, 1, 1, 1];
         let reduceElements = [];
         let reduceButtons = [];
+        this.reduceCompleted = Array(reducePoints.length).fill(0);
         for (let i = 0; i < reduceArray.length; i++) {
             let element = this.add.text(725, 170 + (22*i), reduceArray[i], {
                 fontFamily: 'Stardew_Valley',
@@ -123,6 +126,7 @@ class GameScene extends Phaser.Scene
             corresponding_button.setInteractive();
             corresponding_button.on('pointerdown', () => {
                 corresponding_button.setTexture('done_icon');
+                this.reduceCompleted[i] += 1;
                 if (recyclePoints[i] >= 5) {
                     this.raccoon_1.anims.play('raccoon_1_dance', false);
                 }
@@ -156,6 +160,7 @@ class GameScene extends Phaser.Scene
         let recyclePoints = [5, 5, 3, 3, 3, 3, 1, 1, 1, 1, 1];
         let recycleElements = [];
         let recycleButtons = [];
+        this.recycleCompleted = Array(recyclePoints.length).fill(0);
         for (let i = 0; i < recycleArray.length; i++) {
             let element = this.add.text(725, 210 + (22*i), recycleArray[i], {
                 fontFamily: 'Stardew_Valley',
@@ -170,6 +175,7 @@ class GameScene extends Phaser.Scene
             corresponding_button.setInteractive();
             corresponding_button.on('pointerdown', () => {
                 corresponding_button.setTexture('done_icon');
+                this.recycleCompleted[i] = 1;
                 if (recyclePoints[i] >= 5) {
                     this.raccoon_1.anims.play('raccoon_1_dance', false);
                 }
@@ -418,6 +424,7 @@ class GameScene extends Phaser.Scene
         });
         this.add.text(420, 100, 'Energy', {fontFamily: 'Stardew_Valley', fill : '#000000'}).setScale(1.8);
         
+        this.received_food = false;
         this.food_button = this.add.image(120, 500, 'button').setScale(10);
         this.add.image(120, 500, 'food').setScale(0.2);
         this.food_button.setInteractive();
@@ -430,6 +437,7 @@ class GameScene extends Phaser.Scene
             if (foods > 0) {
                 if (this.food_bar_width <= this.food_bar_max_width) {
                     this.food_bar_width += 10;
+                    this.received_food = true;
                 } else {
                     this.food_bar_width = this.food_bar_max_width;
                     alert("I'm not hungry!");
@@ -443,6 +451,7 @@ class GameScene extends Phaser.Scene
             }
         });
 
+        this.received_toy = false;
         this.toy_button = this.add.image(320, 500, 'button').setScale(10);
         this.add.image(320, 500, 'toy').setScale(0.14);
         this.toy_button.setInteractive();
@@ -455,6 +464,7 @@ class GameScene extends Phaser.Scene
             if (toys > 0) {
                 if (this.toy_bar_width <= this.toy_bar_max_width) {
                     this.toy_bar_width += 10;
+                    this.received_toy = true;
                 } else {
                     this.toy_bar_width = this.toy_bar_max_width;
                     alert("I don't need to play right now!");
@@ -468,6 +478,7 @@ class GameScene extends Phaser.Scene
             }
         });
 
+        this.received_energy = false;
         this.energy_button = this.add.image(520, 500, 'button').setScale(10);
         this.add.image(520, 500, 'energy').setScale(0.13);
         this.energy_button.setInteractive();
@@ -480,6 +491,7 @@ class GameScene extends Phaser.Scene
             if (energy > 0) {
                 if (this.energy_bar_width <= this.energy_bar_max_width) {
                     this.energy_bar_width += 10;
+                    this.received_energy = true;
                 } else {
                     this.energy_bar_width = this.energy_bar_max_width;
                     alert("I'm not tired!");
@@ -531,13 +543,36 @@ class GameScene extends Phaser.Scene
             frameRate: 7,
         })
 
-        this.raccoon_1 = this.add.sprite(310, 290, 'raccoon_1_idle_happy').setScale(0.6)
+        this.raccoon_1 = this.add.sprite(310, 290, 'raccoon_1_idle_happy').setScale(0.6);
     }
 
     update () {
+        if (!this.eatingCompleted.includes(0) && !this.reduceCompleted.includes(0) && !this.recycleCompleted.includes(0)) {
+            this.scene.start('EndingScene');
+        }
         if (this.food_bar_width <= 0.1 || this.toy_bar_width <= 0.1 || this.energy_bar_width <= 0.1) {
             this.raccoon_1.anims.play('raccoon_1_panic', true);
-        } else if (Math.random() < 0.01) {
+        } 
+        else if (this.received_food) {
+            this.raccoon_1.anims.play('raccoon_1_dance', true);
+            this.time.delayedCall(1000, () => {
+                this.received_food = false;
+            }, [], this);
+            
+        }
+        else if (this.received_toy) {
+            this.raccoon_1.anims.play('raccoon_1_turn', true);
+            this.time.delayedCall(800, () => {
+                this.received_toy = false;
+            }, [], this);
+        }
+        else if (this.received_energy) {
+            this.raccoon_1.anims.play('raccoon_1_dance', true);
+            this.time.delayedCall(1000, () => {
+                this.received_energy = false;
+            }, [], this);
+        }
+        else if (Math.random() < 0.01) {
             this.raccoon_1.anims.play('raccoon_1_idle_happy', true);
         }
     }
